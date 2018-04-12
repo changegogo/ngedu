@@ -1,0 +1,94 @@
+<div class="modal fade" id='createRoleModal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">创建角色</h4>
+            </div>
+            <div class="modal-body">
+                <div class="">
+                    <label for="roleName"> 角色名称: 
+                        <input id='roleName' ng-model='roleName'>
+                    </label>
+                </div>
+                <label for="">
+                    权限：
+                </label>
+                <multiple-autocomplete ng-model="selectedList" object-property="name" suggestions-arr="optionList">
+                </multiple-autocomplete>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" ng-click='createRole()'>确定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id='editRoleModal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">编辑角色</h4>
+            </div>
+            <div class="modal-body">
+                <multiple-autocomplete ng-model="selectedList" object-property="name" suggestions-arr="optionList">
+                </multiple-autocomplete>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" ng-click='submitAuthority()'>确定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">创建角色 - <a href='javascript:void(0)' ng-click='showCreateRole()'>添加</a></h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">当前位置:</li>
+                    <li><a ui-sref='app.index'>首页</a><i class="fa fa-angle-right"></i></li>
+                    <li><a>权限管理</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">角色管理</li>
+                </ul>
+            </div>
+        </header>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th col-sm-1>角色</th>
+                    <th col-sm-10>权限</th>
+                    <th col-sm-2>编辑</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr dir-paginate="role in roles | itemsPerPage: itemsPerPage" current-page='pagination.current'>
+                    <td>
+                        {{role.name}}
+                    </td>
+                    <td>
+                        {{authoritiesToString(role.authorities)}}
+                    </td>
+                    <td>
+                        <button class='btn btn-primary' ng-click='editRole(role)'>编辑</button>
+                        <button class='btn btn-danger' ng-click='deleteRoleById(role.id)'>删除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div style="text-align: center">
+        <dir-pagination-controls  on-page-change='pageChanged(newPageNumber)'></dir-pagination-controls>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<table id="listTable" class="table table-hover">
+    <thead>
+        <tr>
+            <th ng-if='selectable'>
+              <label><input type="checkbox" ng-model='selectAll' ng-change='selectAllQuestions()'> 全选</label>
+            </th>
+            <th>题目</th>
+            <th>类型</th>
+            <th>设备</th>
+            <th>岗位</th>
+            <th>业务</th>
+            <th ng-if='editable'>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr pagination-id='paginationId' dir-paginate="question in questions | filter:searchObject | itemsPerPage: itemsPerPage" >
+            <td ng-if='selectable'>
+              <label><input type="checkbox" ng-model='question.isSelected'>  添加</label>
+            </td>
+            <td>{{question.name}}</td>
+            <td>{{question.type | convertQuestionBankTypeFilter:question.isMultiSelect}}</td>
+            <td>{{question.device.name}}</td>
+            <td>{{question.post.name}}</td>
+            <td>{{question.businesses | formatBusinessNamesFilter}}</td>
+            <td ng-if='editable'>
+                <a role="button" class="btn btn-default btn-xs" data-ui-sref="question-bank.edit({id:question.id})">编辑</a>
+                <a role="button" class="btn btn-default btn-xs" ng-click="deleteQuestion(question)">删除</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div style="text-align: center">
+    <dir-pagination-controls pagination-id='paginationId' on-page-change='pageChanged(newPageNumber)'></dir-pagination-controls>
+</div>

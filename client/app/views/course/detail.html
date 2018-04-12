@@ -1,0 +1,129 @@
+
+<style type="text/css">
+.video {position:relative;}
+    .video .study {width:750px; height:562px; padding-top:260px; text-align:center; background:rgba(255,255,255,.9); position:absolute; top:0px; left:0px; z-index:1;}
+.page-wrapper ul li em {margin-left:6px;}
+.events-item .details .time {margin-right:10px;}
+</style>
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">{{currentCourse.name}} - <button class="btn btn-primary" ng-click="viewCourse()">课程完成</button></h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">当前位置:</li>
+                    <li><a data-ui-sref="app">首页</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">{{currentCourse.name}}</li>
+                </ul>
+            </div>
+            <!--//breadcrumbs-->
+        </header>
+        <div class="page-content"> <div class="row page-row">
+                <div class="course-wrapper ">
+                    <article class="course-item">
+
+                           <div class="page-row video" style="text-align: center;">
+                            <video id="coursePlay" data-ng-src="{{currentCourse.courseware}}" width="750" height="562" controls="controls" ng-if="currentCourse.representation.name == 'mp4'">
+                                Your browser does not support the video tag.
+                            </video >
+
+       <!--                       <div class="study">
+                                <button class="btn btn-theme btn-lg" data-ng-click="startStudy($event);">开始学习</button>
+                            </div> -->
+                        
+                        </div> 
+
+                        <div class="page-row box box-border">
+                            <ul class="list-unstyled no-margin-bottom">
+                                <!-- <li><strong>章节:</strong><em>{{currentCourse.chapter.number | formatChapterNumberFilter}}{{currentCourse.chapter.name}}&nbsp;-&nbsp;{{currentCourse.section.number | formatSectionNumberFilter}}{{currentCourse.section.name}}</em></li> -->
+                                <li><strong>设备:</strong><em>{{currentCourse.device.name}}</em></li>
+                                <li><strong>岗位:</strong><em>{{currentCourse.post.name}}</em></li>
+                                <li><strong>业务:</strong><em>值守、操作</em></li>
+                                <li><strong>制作人:</strong><em>{{currentCourse.lecturer}}</em></li>
+                                <li><strong>课时:</strong><em>{{currentCourse.hour}}分钟</em></li>
+                            </ul>
+                        </div>
+                        <!--//page-row-->
+                        <div class="tabbed-info page-row">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab1" data-toggle="tab" onclick="return false;">培训要点</a></li>
+                                <li><a href="#tab2" data-toggle="tab" onclick="return false;">详细描述</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab1">
+                                    <p>{{currentCourse.gist}}</p>
+                                    <!--//table-responsive-->
+                                </div>
+                                <div class="tab-pane" id="tab2">
+                                    <p>{{currentCourse.description}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--//tabbed-info-->
+                        <!-- comment publish form -->
+                        <article class="events-item page-row has-divider clearfix">
+                            <h1>发表评论</h1>
+                            <form class="form-horizontal" novalidate="novalidate">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <!--<input type="hidden" data-ng-model="commentModel.course.id" />-->
+                                        <textarea class="form-control" id="commentContent" name="commentContent" placeholder="请填写评论内容！" rows="5" required="required" data-ng-model="commentModel.content"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12 text-right">
+                                        <button type="submit" class="btn btn-default" data-ng-click="doSave(commentModel);">提交</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </article>
+                        <!-- comment list -->
+                        <article class="events-item page-row has-divider clearfix" data-ng-repeat="comment in commentList" data-ng-init="commentLength=commentList.length">
+                            <div class="details">
+                                <p class="meta">
+                                    <span class="floor pull-right">#{{commentLength - $index}}</span>
+                                    <span class="time">
+                                        <em class="fa fa-clock-o"></em>
+                                        {{comment.created_at | date:"yyyy-MM-dd HH:mm:ss"}}
+                                    </span>
+                                    <span class="user">
+                                        <em class="fa fa-user"></em>
+                                        <!--张三-->
+                                        {{comment.account.realName}}({{comment.account.email}})
+                                    </span>
+                                </p>
+                                <p class="desc">{{comment.content}}</p>
+                            </div>
+                        </article>
+                    </article>
+                    <!--//course-item-->
+                </div>
+                <!--//course-wrapper-->
+                <aside class="page-sidebar col-md-3 col-md-offset-1 col-sm-4 col-sm-offset-1" ng-show=false>
+                    <section class="widget has-divider">
+                        <a class="btn btn-theme" href="#"><i class="fa fa-download"></i>下载课程大纲</a>
+                    </section>
+                    <section class="widget has-divider">
+                        <h3 class="title">相关课程</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="javascript:void(0);"><em class="fa fa-book"></em> 发电机维修</a></li>
+                            <li><a href="javascript:void(0);"><em class="fa fa-book"></em> 发电机发电</a></li>
+                            <li><a href="javascript:void(0);"><em class="fa fa-book"></em> 发电机拆装</a></li>
+                            <li><a href="javascript:void(0);"><em class="fa fa-book"></em> 电动机原理</a></li>
+                            <li><a href="javascript:void(0);"><em class="fa fa-book"></em> 电机原理</a></li>
+                            <li><a href="javascript:void(0);"><em class="fa fa-book"></em> 发动机升级</a></li>
+                            <li><a href="javascript:void(0);"><em class="fa fa-book"></em> 发电机故障诊断</a></li>
+                        </ul>
+                    </section>
+                    <!--//widget-->
+                </aside>
+            </div>
+            <!--//page-row-->
+        </div>
+        <!--//page-content-->
+    </div>
+    <!--//page-->
+</div>
+<!--//content-->

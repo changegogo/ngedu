@@ -1,0 +1,39 @@
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">新闻编辑 - <a type="button" class="btn btn-primary" ui-sref="app.management.news.edit({type:'create'})">新建</a></h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">当前位置:</li>
+                    <li><a ui-sref='app.index'>首页</a><i class="fa fa-angle-right"></i></li>
+                    <li><a>网站维护</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">新闻编辑</li>
+                </ul>
+            </div>
+        </header>
+        <div class="courses-wrapper">
+            <table class="table news-table">
+                <thead>
+                    <tr>
+                        <th>标题图</th>
+                        <th>标题</th>
+                        <th>简介</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr dir-paginate="news in newsList | itemsPerPage:5">
+                        <td><img ng-src="/upload/news/{{news.image}}" alt=""></td>
+                        <td>{{news.title}}</td>
+                        <td>{{news.abstract}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary" ng-click="editNews(news)">编辑</button>
+                            <button type="button" class="btn btn-warning" ng-click="deleteNews(news)">删除</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <dir-pagination-controls/>
+        </div>
+    </div>
+</div>

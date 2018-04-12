@@ -1,0 +1,71 @@
+
+<style type="text/css">
+	.table td, th {vertical-align:middle; text-align: center;}
+</style>
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+	<div class="page-wrapper">
+		<header class="page-heading clearfix">
+			<h1 class="heading-title pull-left">{{type==='all'?'考试管理':'我的考试'}}</h1>
+			<div class="breadcrumbs pull-right">
+				<ul class="breadcrumbs-list">
+					<li class="breadcrumbs-label">当前位置:</li>
+					<li><a data-ui-sref="app">首页</a><em class="fa fa-angle-right"></em></li>
+					<li class="current">{{type==='all'?'考试管理':'我的考试'}}</li>
+				</ul>
+			</div>
+			<!--//breadcrumbs-->
+		</header>
+
+		<div class="page-content">
+			<div class="row page-row">
+				<div class="courses-wrapper col-sm-12">
+					<div class="course-list-header box clearfix" >
+						<div class="pull-left">
+							<a role="button" class="btn btn-default" data-ui-sref=".add">添加</a>
+						</div>
+					</div>
+					<table id="listTable" class="table table-hover">
+						<thead>
+							<tr>
+								<th >考试说明</th>
+								<th >考试时间安排</th>
+								<th ng-if="type==='my'">分数</th>
+								<th ng-if="type==='all'">参考学员</th>
+								<th >操作</th>
+								<!-- <th>xx</th> -->
+							</tr>
+						</thead>
+						<tbody>
+							<tr dir-paginate="examination in examinationList | orderBy:'endDate' | itemsPerPage:5">
+								<td>{{examination.name}}</td>
+								<td>{{examination.startDate | date:"yyyy-MM-dd"}}&nbsp; 至 &nbsp;{{examination.endDate | date:"yyyy-MM-dd"}}</td>
+								<td ng-if="type==='my'">{{examination.examinationAccount.score!==null?examination.examinationAccount.score:'-'}}</td>
+								<td ng-if="type==='all'">{{getStudentsNameStrings(examination.students)}}</td>
+								<td>
+									<a role="button" class="btn btn-default btn-xs" ui-sref="examination.view({id:examination.id, type:'view'})" ng-if="type==='all'">查看试题</a>
+									<a role="button" class="btn btn-default btn-xs"  ng-click="examination.examinationAccount.score!==null||isExpired(examination.endDate)||goExaminationView(examination)" ng-if="type==='my'" ng-disabled="examination.examinationAccount.score!==null||isExpired(examination.endDate)">开始答题</a>
+									<a role="button" class="btn btn-default btn-xs" ui-sref="examination.result({id:examination.id})" ng-if="type==='all'">考试结果</a>
+									<a role="button" class="btn btn-default btn-xs" ng-click='deleteExamination(examination)' ng-if="type==='all'">删除</a>
+								</td>
+								<!-- <td>{{examination}}</td> -->
+							</tr>
+						</tbody>
+					</table>
+					<!--//course-list-header-->
+				<div style="text-align: center">
+				    <dir-pagination-controls  on-page-change='pageChanged(newPageNumber)'></dir-pagination-controls>
+				</div>
+
+					
+				</div>
+				<!--//courses-wrapper-->
+			</div>
+			<!--//page-row-->
+		</div>
+		<!--//page-content-->
+	</div>
+	<!--//page-->
+</div>
+<!--//content-->

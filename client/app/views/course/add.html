@@ -1,0 +1,151 @@
+
+<style type="text/css">
+.image-review {margin-bottom:15px; overflow:hidden;}
+.checkbox-inline {padding-top:2px!important;}
+.checkbox-inline input {position:relative; top:0px;}
+.uploadify_frame {position:relative;}
+.uploadify {position:absolute; top:0px; left:0px; z-index:3;}
+.uploadify-button {text-align:center;}
+</style>
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+	<div class="page-wrapper">
+		<header class="page-heading clearfix">
+			<h1 class="heading-title pull-left">课程管理</h1>
+			<div class="breadcrumbs pull-right">
+				<ul class="breadcrumbs-list">
+					<li class="breadcrumbs-label">当前位置:</li>
+					<li><a data-ui-sref="app">首页</a><em class="fa fa-angle-right"></em></li>
+					<li><a data-ui-sref="course">课程管理</a><em class="fa fa-angle-right"></em></li>
+					<li class="current">添加</li>
+				</ul>
+			</div>
+			<!--//breadcrumbs-->
+		</header>
+		<div class="page-content">
+			<div class="row page-row">
+				<div class="courses-wrapper col-sm-12">
+
+					<form name="courseForm" class="form-horizontal">
+						<div class="form-group">
+							<label for="courseName" class="col-sm-1 control-label">课程名称</label>
+							<div class="col-sm-8">
+								<input type="text" id="courseName" name="courseName" class="form-control" placeholder="请输入课程名称" required="required" data-ng-model="courseModel.name" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="equipment" class="col-sm-1 control-label">设备</label>
+							<div class="col-sm-4">
+								<select id="equipment" name="equipment" class="form-control" data-ng-model="courseModel.device.id">
+									<option data-ng-repeat="device in deviceList" value="{{device.id}}">{{device.name}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="post" class="col-sm-1 control-label">岗位</label>
+							<div class="col-sm-4">
+								<select id="post" name="post" class="form-control" data-ng-model="courseModel.post.id">
+									<option data-ng-repeat="post in postList" value="{{post.id}}">{{post.name}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label">业务</label>
+							<div class="col-sm-11">
+								<div class="checkbox">
+									<label class="checkbox-inline" data-ng-repeat="business in businessList"><input type="checkbox" name="business" value="{{business.id}}" data-checkbox-group>{{business.name}}</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="representation" class="col-sm-1 control-label">文件格式</label>
+							<div class="col-sm-4">
+								<select id="representation" name="representation" class="form-control" data-ng-model="courseModel.representation.id">
+									<option data-ng-repeat="representation in representationList" value="{{representation.id}}">{{representation.name}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="reviewImage" class="col-sm-1 control-label">预览图</label>
+							<div class="col-sm-8">
+								<div class="image-review">
+									<img id="reviewImage" class="img-rounded" src="/assets/images/logo.png" alt="" />
+								</div>
+								<div class="input-group">
+									<input type="text" id="reviewImagePath" name="reviewImagePath" class="form-control" placeholder="如不设置预览图，则使用默认图像做为预览图" readonly data-ng-model="courseModel.reviewImage" />
+									<span class="input-group-btn uploaframe">
+										<button id="uploadImageHandler" type="button" class="btn btn-default">选择</button>
+										<input type="file" id="reviewImageUpload" name="reviewImageUpload" class="hidden" />
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="courseware" class="col-sm-1 control-label">课件上传</label>
+							<div class="col-sm-8">
+								<div class="input-group">
+									<input type="text" id="courseware" name="courseware" class="form-control" placeholder="请选择文件上传" readonly required="required" data-ng-model="courseModel.courseware" />
+									<span class="input-group-btn uploadify_frame">
+										<button id="uploadHandler" type="button" class="btn btn-default">选择</button>
+										<input type="file" id="coursewareUpload" class="hidden" />
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="lecturer" class="col-sm-1 control-label">制作人</label>
+							<div class="col-sm-8">
+								<input type="text" id="lecturer" name="lecturer" class="form-control" placeholder="请输入制作人姓名" required="required" data-ng-model="courseModel.lecturer" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="hour" class="col-sm-1 control-label">课时</label>
+							<div class="col-sm-8">
+								<input type="number" id="hour" name="hour" class="form-control" placeholder="请输入课时时长，单位：分钟" max="99999" min="0" maxlength="5" required="required" data-ng-model="courseModel.hour" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="credit" class="col-sm-1 control-label">学分</label>
+							<div class="col-sm-8">
+								<input type="number" id="credit" name="credit" class="form-control" placeholder="请输入学分" max="99999" min="0" maxlength="5" required="required" data-ng-model="courseModel.credit" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="gist" class="col-sm-1 control-label">培训要点</label>
+							<div class="col-sm-8">
+								<textarea id="gist" name="gist" class="form-control" rows="4" data-ng-model="courseModel.gist"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="description" class="col-sm-1 control-label">详细描述</label>
+							<div class="col-sm-8">
+								<textarea id="description" name="description" class="form-control" rows="4" data-ng-model="courseModel.description"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="remark" class="col-sm-1 control-label">备注</label>
+							<div class="col-sm-8">
+								<textarea id="remark" name="remark" class="form-control" rows="4" data-ng-model="courseModel.remark"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-1 col-sm-8">
+								<button type="submit" class="btn btn-primary" data-ng-disabled="courseForm.$invalid" data-ng-click="doSave(courseModel);">保存</button>
+								<a role="button" class="btn btn-default" data-ui-sref="course">返回</a>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!--//courses-wrapper-->
+			</div>
+			<!--//page-row-->
+		</div>
+		<!--//page-content-->
+	</div>
+	<!--//page-->
+</div>
+<!--//content-->
+
+<script type="text/javascript" src="/bower_components/uploadify/jquery.uploadify.js"></script>
+

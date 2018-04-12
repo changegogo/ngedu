@@ -1,0 +1,121 @@
+
+<style type="text/css">
+.video {position:relative;}
+    .video .study {width:750px; height:562px; padding-top:260px; text-align:center; background:rgba(255,255,255,.9); position:absolute; top:0px; left:0px; z-index:1;}
+.page-wrapper ul li em {margin-left:6px;}
+.events-item .details .time {margin-right:10px;}
+</style>
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">测试课程</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">当前位置:</li>
+                    <li><a data-ui-sref="app">首页</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">测试课程</li>
+                </ul>
+            </div>
+            <!--//breadcrumbs-->
+        </header>
+        <div class="page-content">
+            <div class="row page-row">
+                <div class="course-wrapper col-md-8 col-sm-7">
+                    <article class="course-item">
+                        <div class="page-row video">
+                            <iframe id="coursePlay" width="750" height="600" frameborder="no" src="/upload/video/scorm/player.html"></iframe>
+                        </div>
+                        <div class="page-row box box-border">
+                            <ul class="list-unstyled no-margin-bottom">
+                                <li><strong>章节:</strong><em>第1章&nbsp;-&nbsp;第1节</em></li>
+                                <li><strong>设备:</strong><em>发电电动机</em></li>
+                                <li><strong>岗位:</strong><em>初级</em></li>
+                                <li><strong>业务:</strong><em>值守、操作</em></li>
+                                <li><strong>制作人:</strong><em>制作人</em></li>
+                                <li><strong>课时:</strong><em>15分钟</em></li>
+                            </ul>
+                        </div>
+                        <!--//page-row-->
+                        <div class="tabbed-info page-row">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab1" data-toggle="tab" onclick="return false;">培训要点</a></li>
+                                <li><a href="#tab2" data-toggle="tab" onclick="return false;">详细描述</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab1">
+                                    <p>培训要点</p>
+                                    <!--//table-responsive-->
+                                </div>
+                                <div class="tab-pane" id="tab2">
+                                    <p>详细描述</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--//tabbed-info-->
+                        <!-- comment publish form -->
+                        <article class="events-item page-row has-divider clearfix">
+                            <h1>发表评论</h1>
+                            <form class="form-horizontal" novalidate="novalidate">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <!--<input type="hidden" data-ng-model="commentModel.course.id" />-->
+                                        <textarea class="form-control" id="commentContent" name="commentContent" placeholder="请填写评论内容！" rows="5" required="required" data-ng-model="commentModel.content"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12 text-right">
+                                        <button type="submit" class="btn btn-default">提交</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </article>
+                        <!-- comment list -->
+                        <article class="events-item page-row has-divider clearfix">
+                            <div class="details">
+                                <p class="meta">
+                                    <span class="floor pull-right">#1</span>
+                                    <span class="time">
+                                        <em class="fa fa-clock-o"></em>
+                                        2016-06-10 15:33:14
+                                    </span>
+                                    <span class="user">
+                                        <em class="fa fa-user"></em>
+                                        <!--张三-->
+                                        张三(test@test.com)
+                                    </span>
+                                </p>
+                                <p class="desc">这里显示评论内容</p>
+                            </div>
+                        </article>
+                    </article>
+                    <!--//course-item-->
+                </div>
+                <!--//course-wrapper-->
+                <aside class="page-sidebar col-md-3 col-md-offset-1 col-sm-4 col-sm-offset-1">
+                    <section class="widget has-divider">
+                        <a class="btn btn-theme" href="#"><i class="fa fa-download"></i>下载课程大纲</a>
+                    </section>
+                    <section class="widget has-divider">
+                        <h3 class="title">相关课程</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="javascript:void(0);"><em class="fa fa-book"></em> 发电机维修</a></li>
+                            <li><a href="javascript:void(0);"><em class="fa fa-book"></em> 发电机发电</a></li>
+                            <li><a href="javascript:void(0);"><em class="fa fa-book"></em> 发电机拆装</a></li>
+                            <li><a href="javascript:void(0);"><em class="fa fa-book"></em> 电动机原理</a></li>
+                            <li><a href="javascript:void(0);"><em class="fa fa-book"></em> 电机原理</a></li>
+                            <li><a href="javascript:void(0);"><em class="fa fa-book"></em> 发动机升级</a></li>
+                            <li><a href="javascript:void(0);"><em class="fa fa-book"></em> 发电机故障诊断</a></li>
+                        </ul>
+                    </section>
+                    <!--//widget-->
+                </aside>
+            </div>
+            <!--//page-row-->
+        </div>
+        <!--//page-content-->
+    </div>
+    <!--//page-->
+</div>
+<!--//content-->

@@ -1,0 +1,33 @@
+<!-- ******CONTENT****** -->
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">{{news.title}}</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">您的位置:</li>
+                    <li><a ui-sref="app.index">首页</a><i class="fa fa-angle-right"></i></li>
+                    <li><a>最新消息</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">{{news.title}}</li>
+                </ul>
+            </div>
+            <!--//breadcrumbs-->
+        </header>
+        <div class="page-content">
+            <div class="row page-row">
+                <div class="news-wrapper col-md-12">
+                    <article class="news-item">
+                        <img class="img-thumbnail img-responsive center-block" ng-src="/upload/news/{{news.image}}" alt="">
+                        <div ta-bind="text" ng-model="news.content"></div>
+                    </article>
+                    <!--//news-item-->
+                </div>
+                <!--//news-wrapper-->
+            </div>
+            <!--//page-row-->
+        </div>
+        <!--//page-content-->
+    </div>
+    <!--//page-->
+</div>
+<!--//content-->

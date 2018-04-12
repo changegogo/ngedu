@@ -1,0 +1,147 @@
+
+<style type="text/css">
+.checkbox {padding-top:0px!important;}
+.checkbox-inline, .radio-inline {padding-top:4px!important;}
+ .checkbox-inline > input[type="checkbox"]
+,.radio-inline > input[type="radio"]{position:relative; top:2px;}
+.question-options {}
+.question-options li {padding-right:40px; position:relative;}
+.question-options li a.operator {position:absolute; top:2px;}
+.question-options li .edit {font-size:12px; right:20px;}
+.question-options li .remove {right:0px;}
+</style>
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+	<div class="page-wrapper">
+		<header class="page-heading clearfix">
+			<h1 class="heading-title pull-left">题库管理</h1>
+			<div class="breadcrumbs pull-right">
+				<ul class="breadcrumbs-list">
+					<li class="breadcrumbs-label">当前位置:</li>
+					<li><a data-ui-sref="app">首页</a><em class="fa fa-angle-right"></em></li>
+					<li><a data-ui-sref="question-bank">题库管理</a><em class="fa fa-angle-right"></em></li>
+					<li class="current">添加</li>
+				</ul>
+			</div>
+			<!--//breadcrumbs-->
+		</header>
+		<div class="page-content">
+			<div class="row page-row">
+				<div class="courses-wrapper col-sm-12">
+					<form class="form-horizontal" name="questionBankForm">
+						<div class="form-group">
+							<label for="questionBankName" class="col-sm-1 control-label">题目</label>
+							<div class="col-sm-8">
+								<textarea id="questionBankName" name="questionBankName" class="form-control" rows="4" placeholder="题目" required="required" data-ng-model="questionBankModel.name"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label">题目类型</label>
+							<div class="col-sm-8">
+								<div class="checkbox" display-choice-question-option>
+									<label class="radio-inline">
+										<input type="radio" name="questionBankType" value="TrueOrFalseQuestion" data-ng-model="questionBankModel.type" />判断题
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="questionBankType" value="ChoiceQuestion" data-ng-model="questionBankModel.type" />选择题
+									</label>
+									<label class="checkbox-inline hidden">
+										<input type="checkbox" id="isMultiSelect" value="yes" data-ng-model="questionBankModel.isMultiSelect" />多选
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="chapter" class="col-sm-1 control-label">难度</label>
+							<div class="col-sm-8">
+								<input id="input-id" type="number" 
+								 class="rating" data-size="xs" data-step='1'>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="device" class="col-sm-1 control-label">设备</label>
+							<div class="col-sm-4">
+								<select id="device"
+										name="device"
+										class="form-control"
+										data-ng-model="questionBankModel.device.id"
+										data-ng-options="device.id as device.name for device in deviceList"
+								/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="post" class="col-sm-1 control-label">岗位</label>
+							<div class="col-sm-4">
+								<select id="post"
+										name="post"
+										class="form-control"
+										data-ng-model="questionBankModel.post.id"
+										data-ng-options="post.id as post.name for post in postList"
+								/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label">业务</label>
+							<div class="col-sm-11">
+								<div class="checkbox">
+									<label class="checkbox-inline" data-ng-repeat="business in businessList"><input type="checkbox" name="business" value="{{business.id}}" data-checkbox-group>{{business.name}}</label>
+								</div>
+							</div>
+						</div>
+						<hr class="question-option-frame" />
+						<h3 class="question-option-frame">答案</h3>
+						<div class="form-group true-or-false-option" ng-show='questionBankModel.type==="TrueOrFalseQuestion"'>
+							<div class="col-sm-4 col-sm-offset-1">
+							<label class="radio-inline"><input type="radio" name="true-false" ng-value=true ng-model="questionBankModel.trueOrFalse">正确</label>
+							<label class="radio-inline"><input type="radio" name="true-false" ng-value=false ng-model="questionBankModel.trueOrFalse">错误</label>
+
+							</div>
+							
+						</div>
+
+						<div class="form-group question-option-frame" ng-show='questionBankModel.type==="ChoiceQuestion"'>
+							<div class="col-sm-4 col-sm-offset-1">
+								<div class="input-group">
+									<input type="hidden" data-ng-model="optionModel.index" />
+									<input type="text" class="form-control" placeholder="选项内容" data-ng-model="optionModel.name" />
+									<label class="input-group-addon">
+										<input type="checkbox" value="true" data-ng-model="optionModel.isRight" data-check-right-answer-exist />正确答案
+									</label>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<button type="button" class="btn btn-primary" data-ng-click="saveOption(optionModel);">保存</button>
+							</div>
+						</div>
+						<div class="form-group question-option-frame" ng-if='questionBankModel.type==="ChoiceQuestion"'>
+							<div class="col-sm-5 col-sm-offset-1">
+								<ol type="A" class="question-options">
+									<li data-ng-repeat="option in questionBankModel.options">
+										<span data-ng-bind="option.name" data-ng-if="option.isRight" class="text-primary"></span>
+										<span data-ng-bind="option.name" data-ng-if="!option.isRight"></span>
+										<!--<span data-ng-bind="option.name" data-ng-class="option.isRight?'text-primary':''" />-->
+										<a class="operator edit" href="javascript:void(0);" data-ng-click="editOption($index,option);"><span class="glyphicon glyphicon-pencil"></span></a>
+										<a class="operator remove" href="javascript:void(0);" data-ng-click="removeOption($index,option);"><span class="glyphicon glyphicon-remove"></span></a>
+									</li>
+								</ol>
+							</div>
+						</div>
+						<hr />
+						<div class="form-group">
+							<div class="col-sm-offset-1 col-sm-8">
+								<button type="submit" class="btn btn-primary" data-ng-disabled="questionBankForm.$invalid" data-ng-click="doSave(questionBankModel);">保存</button>
+								<a role="button" class="btn btn-default" data-ui-sref="question-bank">返回</a>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!--//question-bank-wrapper-->
+			</div>
+			<!--//page-row-->
+		</div>
+		<!--//page-content-->
+	</div>
+	<!--//page-->
+</div>
+<!--//content-->

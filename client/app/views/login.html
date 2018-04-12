@@ -1,0 +1,74 @@
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">注册 / 登录</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">当前位置:</li>
+                    <li><a ui-sref='app.index'>首页</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">注册 / 登录</li>
+                </ul>
+            </div>
+        </header>
+        <div class="col-sm-6 col-md-6">
+            <div class="signin" ng-controller='SignInController'>
+                <div class="social_sign">
+                    <h3>请使用您的帐号</h3>
+                    <a class="login-icon"><i class="fa fa-user"></i></a>
+                </div>
+                <div class="or">
+                    <div class="or_l"></div>
+                    <span>@</span>
+                    <div class="or_r"></div>
+                </div>
+                <p class="sign_title">马上登录</p>
+                <div class="row">
+                    <div class="col-lg-2"></div>
+                    <div class="form col-lg-8">
+                        <form name='loginForm' novalidate>
+                            <input ng-model='user.name' class="form-control" type="text" placeholder="用户名" required="">
+                            <input ng-model='user.password' class="form-control" type="password" placeholder="密码">
+                            <div class="forgot" >
+                                <div class="checkbox" ng-show=false>
+                                    <label class="">
+                                        <input type="checkbox">保存登录状态</label>
+                                </div>
+                                <!-- <a ui-sref='resetPassword'>忘记密码</a> -->
+                                <br>
+                            </div>
+                            <button type="submit" ng-click='postForm(user)' class="btn btn-primary btn-lg">登 入</button>
+                        </form>
+                    </div>
+                    <div class="col-lg-2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <div class="signup" ng-controller='SignUpController'>
+                <form name='registerForm' novalidate>
+                    <fieldset>
+                        <div class="social_sign">
+                            <h3>还没有网站帐号？</h3>
+                            <a class="signup-icon"><i class="fa fa-user-plus"></i></a>
+                        </div>
+                        <p class="sign_title">立即创建新账号吧。</p>
+                        <div class="row">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-8">
+                                <input id="Username" name="Username" ng-model='user.name' placeholder="用户名" class="form-control" min-length=5  type="text" required>
+                                <input id="Email" name="Email" ng-model='user.email' placeholder="Email" class="form-control"  type="email" required>
+                                <input id="Password" name="Password" ng-model='user.password' placeholder="密码" class="form-control"  type="password" required>
+                                <div class="checkbox">
+                                    <label class="" ng-show=false>
+                                        <input name="checkboxes" ng-model='user.confirmProtocal' value="Option one" type="checkbox" > 我同意<a href="#" >《网站服务协议》</a> </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-2"></div>
+                        </div>
+                        <button type="submit" ng-click="postForm(user)" class="btn btn-success btn-lg" ng-disabled='registerForm.$invalid'>注 册</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">

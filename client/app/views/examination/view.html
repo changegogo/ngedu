@@ -1,0 +1,74 @@
+<style type="text/css">
+  .question-type {
+    padding-top: 20px;
+  }
+  .question {
+    padding-top: 10px;
+  }
+  .option {
+    padding-left: 20px;
+  }
+</style>
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+  <div class="page-wrapper">
+    <header class="page-heading clearfix">
+      <h1 class="heading-title pull-left">试卷</h1>
+      <div class="breadcrumbs pull-right">
+        <ul class="breadcrumbs-list">
+          <li class="breadcrumbs-label">当前位置:</li>
+          <li><a data-ui-sref="app">首页</a><em class="fa fa-angle-right"></em></li>
+          <li><a data-ui-sref="question-bank">题库管理</a><em class="fa fa-angle-right"></em></li>
+          <li class="current">试卷</li>
+        </ul>
+      </div>
+      <!--//breadcrumbs-->
+    </header>
+    <div class="page-content">
+      <div class="question-type">
+        一、判断题
+        <div class="question" ng-repeat='question in examination.questionBanks | filter:{type:"TrueOrFalseQuestion"}'>
+          ({{$index+1}}) {{question.name}}
+          <div class="option">
+            <label class="radio-inline" ng-repeat="option in question.options ">
+              <input type="radio" ng-model='question.answer' ng-value="{{option.id}}"> {{option.name}} 
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="question-type">
+        二、单选题
+        <div class="question" ng-repeat='question in examination.questionBanks | filter:{type:"ChoiceQuestion", isMultiSelect:false}'>
+          ({{$index+1}}) {{question.name}}
+          <ol>
+            <li type="A" class="option" ng-repeat="option in question.options | orderBy:random">
+              <label >
+                  <input type="radio" ng-model='question.answer' ng-value="{{option.id}}"> {{option.name}}
+              </label>
+            </li>
+          </ol>
+        </div>
+      </div>
+      <div class="question-type">
+        三、多选题
+        <div class="question" ng-repeat='question in examination.questionBanks | filter:{type:"ChoiceQuestion", isMultiSelect:true}'>
+          ({{$index+1}}) {{question.name}}
+          <ol>
+            <li type="A" class="option" ng-repeat="option in question.options | orderBy:random ">
+              <label >
+                  <input type="checkbox" ng-model='option.isSelected'> {{option.name}}
+              </label>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <!--//page-content-->
+  </div>
+  <!--//page-->
+
+  <button type="button" class="btn btn-primary" ng-click="submitAnswer()" style="margin:20px 0" ng-show="type === 'answer'">提交答案</button>
+</div>
+<!--//content-->
+

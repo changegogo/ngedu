@@ -1,0 +1,79 @@
+
+<style type="text/css">
+.table td {vertical-align:middle!important;}
+	 th.sort, td.sort
+	,th.name, td.name
+	,th.operate, td.operate
+	,input.sort {text-align:center;}
+	th.sort, td.sort {width:66px;}
+	th.name, td.name {width:200px;}
+	th.remark, td.remark {}
+	th.operate, td.operate {width:120px;}
+	input.sort {width:50px; padding:2px 4px;}
+</style>
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+	<div class="page-wrapper">
+		<header class="page-heading clearfix">
+			<h1 class="heading-title pull-left">业务管理</h1>
+			<div class="breadcrumbs pull-right">
+				<ul class="breadcrumbs-list">
+					<li class="breadcrumbs-label">当前位置:</li>
+					<li><a data-ui-sref="app">首页</a><em class="fa fa-angle-right"></em></li>
+					<li class="current">业务管理</li>
+				</ul>
+			</div>
+			<!--//breadcrumbs-->
+		</header>
+		<div class="page-content">
+			<div class="row page-row">
+				<div class="courses-wrapper col-sm-12">
+					<div class="course-list-header box clearfix">
+						<div class="pull-left">
+							<a role="button" class="btn btn-default" data-ui-sref=".add">添加</a>
+						</div>
+						<!--<div class="sort pull-right">
+							<label class="control-label pull-left">排序: </label>
+							<select class="sort-options form-control pull-left">
+								<option>开始日期</option>
+								<option>持续时间</option>
+								<option>难度</option>
+							</select>
+						</div>-->
+						<!--//sort-->
+					</div>
+
+					<table id="listTable" class="table table-hover">
+						<thead>
+							<tr>
+								<th class="sort">排序</th>
+								<th class="name">业务名称</th>
+								<th class="remark">备注</th>
+								<th class="operate">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr dir-paginate="business in businessList | itemsPerPage:5">
+								<td class="sort"><input type="text" id="sortNumber_{{business.id}}" class="form-control input-sm sort" maxlength="5" value="" data-ng-model="business.sort" /></td>
+								<td class="name">{{business.name}}</td>
+								<td class="remark">{{business.remark}}</td>
+								<td class="operate">
+									<a role="button" class="btn btn-default btn-xs" data-ui-sref=".edit({id:{{business.id}}})">编辑</a>
+									<a role="button" class="btn btn-default btn-xs" ng-click="deleteBusiness(business)">删除</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<dir-pagination-controls/>
+					<!--//course-list-header-->
+				</div>
+				<!--//courses-wrapper-->
+			</div>
+			<!--//page-row-->
+		</div>
+		<!--//page-content-->
+	</div>
+	<!--//page-->
+</div>
+<!--//content-->

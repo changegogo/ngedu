@@ -1,0 +1,42 @@
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">通知</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">当前位置:</li>
+                    <li><a ui-sref='app.index'>首页</a><i class="fa fa-angle-right"></i></li>
+                    <!-- <li><a>个人中心</a><i class="fa fa-angle-right"></i></li> -->
+                    <li><a ui-sref='app.account.profile'>个人中心</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">通知</li>
+                </ul>
+            </div>
+        </header>
+    </div>
+    <article>
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for='title' class='col-sm-2'>名称</label>
+          <div id='title' class="col-sm-10">{{notification.title}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for='type' class='col-sm-2'>类型</label>
+          <div id='type' class="col-sm-10">{{notification.type}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for='description' class='col-sm-2'>详情</label>
+          <div id='description' class="col-sm-10">{{notification.description}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for='createdAt' class='col-sm-2'>创建日期</label>
+          <div id='createdAt' class="col-sm-10">{{notification.createdAt | date:'yyyy-MM-dd'}}
+          </div>
+        </div>
+        <button type="button" class="btn btn-danger" ng-click='deleteNotification()'>删除</button>
+      </form>
+    </article>
+
+</div>

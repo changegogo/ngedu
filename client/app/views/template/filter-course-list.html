@@ -1,0 +1,43 @@
+<table id="listTable" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th class="col-sm-4" >课程名称</th>
+            <th class="col-sm-2">课时(分钟)</th>
+            <th class="col-sm-2">设备</th>
+            <th class="col-sm-2">岗位</th>
+            <th class="col-sm-2">业务</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr dir-paginate-start="course in courseList | orderBy:orderText | itemsPerPage:10" data-ng-click="showCourseDetail(course);">
+            <td class="name" >
+                <em class="glyphicon glyphicon-plus-sign" ></em>
+                <a ui-sref="training.detail({id:course.id})" >{{course.name}}{{' - '+course.id}}</a>
+            </td>
+            <td class="hour">{{course.hour}} </td>
+            <td class="equipment">{{course.device.name}}</td>
+            <td class="post">{{course.post.name}}</td>
+            <td class="business">{{businessToString(course.businesses)}}</td>
+        </tr>
+        <tr ng-show="course.showDetail">
+            <td class="lecturer">制作人</td>
+            <td colspan="2">{{course.lecturer}}</td>
+            <td class="representation">文件格式</td>
+            <td colspan="4">{{course.representation.name}}</td>
+        </tr>
+        <tr ng-show="course.showDetail">
+            <td class="remark">备注</td>
+            <td colspan="7">{{course.remark}}</td>
+        </tr>
+        <tr ng-show="course.showDetail">
+            <td class="gist">培训要点</td>
+            <td colspan="7">{{course.gist}}</td>
+        </tr>
+        <tr dir-paginate-end ng-show="course.showDetail">
+            <td class="description">详细描述</td>
+            <td colspan="7">{{course.description}}</td>
+        </tr>
+
+    </tbody>
+</table>
+<dir-pagination-controls ></dir-pagination-controls>

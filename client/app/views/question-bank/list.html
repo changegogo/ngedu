@@ -1,0 +1,39 @@
+
+<style type="text/css">
+th,td {text-align: center;}
+</style>
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+	<div class="page-wrapper">
+		<header class="page-heading clearfix">
+			<h1 class="heading-title pull-left">题库管理</h1>
+			<div class="breadcrumbs pull-right">
+				<ul class="breadcrumbs-list">
+					<li class="breadcrumbs-label">当前位置:</li>
+					<li><a data-ui-sref="app">首页</a><em class="fa fa-angle-right"></em></li>
+					<li class="current">题库管理</li>
+				</ul>
+			</div>
+			<!--//breadcrumbs-->
+		</header>
+		<div class="page-content">
+			<div class="row page-row">
+				<div class="courses-wrapper col-sm-12">
+					<div class="course-list-header box clearfix">
+						<div class="pull-left">
+							<a role="button" class="btn btn-default" data-ui-sref="question-bank.edit">添加</a>
+						</div>
+					</div>
+
+					<question-list questions="questionBankList" editable=true />
+				</div>
+				<!--//courses-wrapper-->
+			</div>
+			<!--//page-row-->
+		</div>
+		<!--//page-content-->
+	</div>
+	<!--//page-->
+</div>
+<!--//content-->

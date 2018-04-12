@@ -1,0 +1,124 @@
+
+<style type="text/css">
+.table .table {margin-bottom:0px;}
+.table td {vertical-align:middle!important;}
+	tr.other, tr.remark, tr.gist, tr.description {display:none;}
+	td.lecturer, td.representation, td.remark, td.gist, td.description {color:#34655c; font-weight:bold;}
+	 th.name
+	,th.chapter
+	,th.section
+	,th.hour ,td.hour
+	,th.equipment ,td.equipment
+	,th.post ,td.post
+	,th.business ,td.business{text-align:center;}
+	/*th.name, td.name {width:220px;}*/
+	th.chapter, td.chapter {width:200px;}
+	th.section, td.section{width:200px;}
+	th.hour, td.hour {width:80px;}
+	th.equipment, td.equipment {width:50px;}
+	/*th.representation, td.representation {width:120px;}*/
+	th.post, td.post {width:50px;}
+	th.business, td.business {width:100px;}
+	td.lecturer, td.remark, td.gist, td.description {width:120px;}
+	/*th.operate, td.operate {width:110px;}*/
+</style>
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+	<div class="page-wrapper">
+		<header class="page-heading clearfix">
+			<h1 class="heading-title pull-left">课程搜索</h1>
+			<div class="breadcrumbs pull-right">
+				<ul class="breadcrumbs-list">
+					<li class="breadcrumbs-label">当前位置:</li>
+					<li><a data-ui-sref="app">首页</a><em class="fa fa-angle-right"></em></li>
+					<li class="current">课程搜索</li>
+				</ul>
+			</div>
+			<!--//breadcrumbs-->
+		</header>
+		<div class="page-content">
+			<div class="">
+				<div class="courses-wrapper col-sm-12">
+					<div class="course-list-header box clearfix">
+						<div class="pull-left">
+							<form name="courseSearchForm" class="form-inline">
+								<div class="form-group">
+									<label for="courseSearch-courseName" >课程名称</label>
+									<input type="text" id="courseSearch-courseName" class="form-control input-sm" placeholder="课程名称" data-ng-model="courseSearchModel.courseName" />
+								</div>
+								<!--<a href="javascript:void(0);">高级搜索</a>-->
+								<p class="clearfix"></p>
+								<div class="form-group">
+									<label for="courseSearch-representation">文件格式</label>
+									<select id="courseSearch-representation"
+											name="representation"
+											class="form-control input-sm"
+											data-ng-model="courseSearchModel.representationId"
+											data-ng-options="representation.id as representation.name for representation in representationList"
+									/>
+								</div>
+								<div class="form-group">
+									<label for="courseSearch-device">设备</label>
+									<!-- track by device.id -->
+									<select id="courseSearch-device"
+											name="device"
+											class="form-control input-sm"
+											data-ng-model="courseSearchModel.deviceId"
+											data-ng-options="device.id as device.name for device in deviceList"
+									/>
+								</div>
+								<div class="form-group">
+									<label for="courseSearch-post">岗位</label>
+									<select id="courseSearch-post"
+											name="device"
+											class="form-control input-sm"
+											data-ng-model="courseSearchModel.postId"
+											data-ng-options="post.id as post.name for post in postList"
+									/>
+								</div>
+								<p class="clearfix"></p>
+								<div class="form-group">
+									<label>业务</label>
+									<div class="checkbox">
+										<label class="checkbox-inline" data-ng-repeat="business in businessList"><input type="checkbox" name="business" value="{{business.id}}" data-checkbox-group>{{business.name}}</label>
+									</div>
+								</div>
+								<p class="clearfix"></p>
+								<div class="form-group">
+									<label for="courseSearch-lecturer">制作人</label>
+									<input type="text" id="courseSearch-lecturer" class="form-control input-sm" placeholder="制作人" data-ng-model="courseSearchModel.lecturer" />
+								</div>
+								<p class="clearfix"></p>
+								<div class="form-group">
+									<button type="button" class="btn btn-primary btn-sm" data-ng-click="search(courseSearchModel);">搜索</button>
+								</div>
+
+							</form>
+						</div>
+						<!-- <div class="sort pull-right">
+							<label class="control-label pull-left">排序: </label>
+							<select class="sort-options form-control pull-left" data-ng-model="courseSearchModel.sort">
+								<option value="hour_asc">课时正序</option>
+								<option value="hour_desc">课时倒序</option>
+								<option value="device">设备</option>
+								<option value="post">岗位</option>
+								<option value="representation">文件格式</option>
+							</select>
+						</div> -->
+						<!--//sort-->
+					</div>
+
+					<filter-course-list course-list="courseList" />
+					<!--//course-list-header-->
+
+				</div>
+				<!--//courses-wrapper-->
+			</div>
+			<!--//page-row-->
+		</div>
+		<!--//page-content-->
+	</div>
+	<!--//page-->
+</div>
+<!--//content-->

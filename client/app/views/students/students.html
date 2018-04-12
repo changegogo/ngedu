@@ -1,0 +1,16 @@
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">全部学员学习情况</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">当前位置:</li>
+                    <li><a ui-sref='app.index'>首页</a><i class="fa fa-angle-right"></i></li>
+                    <li><a>学员管理</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">全部学员</li>
+                </ul>
+            </div>
+        </header>
+        <students-list students='originStudents' items-per-page=5 show-finish=true editable=true show-filter=true></students-list>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+
+<style type="text/css">
+.table td {vertical-align:middle!important;}
+	 th.name ,td.name
+	/*,th.remark*/
+	,th.operate ,td.operate {text-align:center;}
+	th.name, td.name {width:200px;}
+	th.remark, td.remark {}
+	th.operate, td.operate {width:120px;}
+</style>
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+	<div class="page-wrapper">
+		<header class="page-heading clearfix">
+			<h1 class="heading-title pull-left">设备管理</h1>
+			<div class="breadcrumbs pull-right">
+				<ul class="breadcrumbs-list">
+					<li class="breadcrumbs-label">当前位置:</li>
+					<li><a data-ui-sref="app">首页</a><em class="fa fa-angle-right"></em></li>
+					<li class="current">设备管理</li>
+				</ul>
+			</div>
+			<!--//breadcrumbs-->
+		</header>
+		<div class="page-content">
+			<div class="row page-row">
+				<div class="courses-wrapper col-sm-12">
+					<div class="course-list-header box clearfix">
+						<div class="pull-left">
+							<a role="button" class="btn btn-default" data-ui-sref=".add">添加</a>
+						</div>
+						<!--<div class="sort pull-right">
+							<label class="control-label pull-left">排序: </label>
+							<select class="sort-options form-control pull-left">
+								<option>开始日期</option>
+								<option>持续时间</option>
+								<option>难度</option>
+							</select>
+						</div>-->
+						<!--//sort-->
+					</div>
+
+					<table id="listTable" class="table table-hover">
+						<thead>
+							<tr>
+								<th class="name">设备名称</th>
+								<th class="remark">备注</th>
+								<th class="operate">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr dir-paginate="device in deviceList | itemsPerPage:5">
+								<td class="name">{{device.name}}</td>
+								<td class="remark">{{device.remark}}</td>
+								<td class="operate">
+									<a role="button" class="btn btn-default btn-xs" data-ui-sref=".edit({id:{{device.id}}})">编辑</a>
+									<a role="button" class="btn btn-default btn-xs" ng-click="deleteDevice(device)">删除</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+						<dir-pagination-controls > </dir-pagination-controls>
+				</div>
+				<!--//courses-wrapper-->
+			</div>
+			<!--//page-row-->
+		</div>
+		<!--//page-content-->
+	</div>
+	<!--//page-->
+</div>
+<!--//content-->

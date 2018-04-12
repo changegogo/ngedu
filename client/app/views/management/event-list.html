@@ -1,0 +1,47 @@
+<!--//main-nav-->
+<!-- ******CONTENT****** -->
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">全部通知</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">当前位置:</li>
+                    <li><a href="../index.html">首页</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">全部通知</li>
+                </ul>
+            </div>
+            <!--//breadcrumbs-->
+        </header>
+        <div class="page-content">
+            <div class="row page-row">
+                <div class="events-wrapper col-md-8 col-sm-7">
+                    <article class="events-item page-row has-divider clearfix" dir-paginate="event in events | orderBy:'-created_at' | itemsPerPage:5">
+                        <div class="date-label-wrapper col-md-1 col-sm-2">
+                            <p class="date-label">
+                                <span class="month">{{event.begin | date:'M'}}月</span>
+                                <span class="date-number">{{event.begin | date:'d'}}</span>
+                            </p>
+                        </div>
+                        <!--//date-label-wrapper-->
+                        <div class="details col-md-11 col-sm-10">
+                            <h3 class="title">{{event.title}}</h3>
+                            <p class="meta"><span class="time"><i class="fa fa-clock-o"></i>{{event.begin | date:'MM-dd hh:mm a'}} - {{event.end | date:'MM-dd hh:mm a'}}</span><span class="location"><i class="fa fa-map-marker"></i><a href="#">{{event.location}}</a></span></p>
+                            <!-- <p class="desc">这节课主要介绍。。。。Sake鍋、水果魚、蒸鮮蝦、辣椒螃蟹都不賴，可是唱片只有這一盤嗎？我們最近就連破好幾個橫跨兩岸的詐騙集團……</p> -->
+                        </div>
+                        <!--//details-->
+                    </article>
+                    
+                    <dir-pagination-controls/>
+                    <!--//events-item-->
+                </div>
+                <!--//events-wrapper-->
+            </div>
+            <!--//page-row-->
+        </div>
+        <!--//page-content-->
+    </div>
+    <!--//page-->
+</div>
+<!--//content-->
+</div>

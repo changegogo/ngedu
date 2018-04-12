@@ -1,0 +1,85 @@
+
+<style type="text/css">
+.courses-wrapper .tab-content img {height:88px;}
+.glyphicon {font-size:12px;}
+.other td {min-width:80px;}
+td.th_post, td.th_business, td.th_representation, td.th_lecturer, td.th_remark, td.th_gist, td.th_description {width:80px; font-weight:bold; color:#00423b;}
+tr.other, tr.remark, tr.gist, tr.description {display:none;}
+td.post {width:110px;}
+td.business {width:100px;}
+td.representation {width:100px;}
+td.lecturer {width:100px;}
+</style>
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+	<div class="page-wrapper">
+		<header class="page-heading clearfix">
+			<h1 class="heading-title pull-left">业务培训&nbsp;-&nbsp;{{currentBusiness.name}}</h1>
+			<div class="breadcrumbs pull-right">
+				<ul class="breadcrumbs-list">
+					<li class="breadcrumbs-label">当前位置:</li>
+					<li><a data-ui-sref="app">首页</a><i class="fa fa-angle-right"></i></li>
+					<li><a href="javascript:void(0);">业务培训</a><i class="fa fa-angle-right"></i></li>
+					<li class="current">{{currentBusiness.name}}</li>
+				</ul>
+			</div>
+			<!--//breadcrumbs-->
+		</header>
+		<div class="page-content">
+			<div class="row page-row">
+				<div class="courses-wrapper ">
+					<div class="featured-courses tabbed-info page-row">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#tab1" data-toggle="tab" onclick="return false;">参加最多</a></li>
+							<li><a href="#tab2" data-toggle="tab" onclick="return false;">最新课程</a></li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="tab1">
+								<div class="row">
+									<div class="item col-md-3 col-sm-6 col-xs-6" data-ng-repeat="course in playedMostDeviceCourses">
+										<img class="img-responsive" data-ng-src="{{course.reviewImage}}"   alt="{{course.name}}" style="object-fit: contain"/>
+										<p class="text-center"><a data-ui-sref="training.detail({id:course.id})">{{course.name}}</a></p>
+									</div>
+								</div>
+								<!--//row-->
+							</div>
+							<div class="tab-pane" id="tab2">
+								<div class="row">
+									<div class="item col-md-3 col-sm-6 col-xs-6" data-ng-repeat="course in newCourseList">
+										<img class="img-responsive" data-ng-src="{{course.reviewImage}}"   alt="{{course.name}}" style="object-fit: contain"/>
+										<p class="text-center"><a data-ui-sref="training.detail({id:course.id})">{{course.name}}</a></p>
+									</div>
+								</div>
+								<!--//row-->
+							</div>
+						</div>
+					</div>
+					<!--//featured-courses-->
+					<div class="course-list-header box clearfix">
+						<div class="sort pull-right">
+							<label class="control-label pull-left">排序: </label>
+							<select class="sort-options form-control pull-left" ng-model="orderText">
+								<option value="">默认</option>
+								<option value="created_at">创建日期</option>
+								<option value="-playedCount">热门</option>
+								<option value="-hour">持续时间：由高到低</option>
+								<option value="hour">持续时间：由低到高</option>
+							</select>
+						</div>
+					</div>
+					<!--//course-list-header-->
+
+					<filter-course-list order-text="orderText" course-list="courseList" />
+
+
+				<!--//courses-wrapper-->
+				
+			</div>
+			<!--//page-row-->
+		</div>
+		<!--//page-content-->
+	</div>
+	<!--//page-->
+</div>
+<!--//content-->

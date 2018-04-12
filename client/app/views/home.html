@@ -1,0 +1,246 @@
+<!-- ******CONTENT****** -->
+<div class="content container">
+    <div id="promo-slider" class="slider flexslider">
+        <ul class="slides">
+            <li ng-repeat="carousel in carousels | orderBy: '-id'">
+                <img ng-src="/upload/carousel/{{carousel.image}}" alt="" />
+                <p class="flex-caption">
+                    <span class="main">{{carousel.title}}</span>
+                    <br />
+                    <span class="secondary clearfix">{{carousel.subtitle}}</span>
+                </p>
+            </li>
+        </ul>
+        <!--//slides-->
+    </div>
+    <!--//flexslider-->
+   <!--  <section class="promo box box-dark">
+        <div class="col-md-9">
+            <h1 class="section-heading">为什么选择新源培训平台</h1>
+            <p>新源培训平台，超过一百余项课程，涵盖电力系统全部核心知识点。独有的答题系统，竞赛系统，交流论坛。让您的业务培训不在枯燥。</p>
+        </div>
+        <div class="col-md-3">
+            <a class="btn btn-cta" ui-sref="login"><i class="fa fa-play-circle"></i>立即使用</a>
+        </div>
+    </section> -->
+    <!--//promo-->
+    <section class="news">
+        <h1 class="section-heading text-highlight"><span class="line">最新消息</span></h1>
+        <div class="carousel-controls">
+            <span class="prev" href="#news-carousel" data-slide="prev"><i class="fa fa-caret-left" style="font-size: 22px;"></i></span>
+            <span class="next" href="#news-carousel" data-slide="next"><i class="fa fa-caret-right" style="font-size: 22px;"></i></span>
+        </div>
+        <!--//carousel-controls-->
+        <div class="section-content clearfix">
+            <div id="news-carousel" class="news-carousel carousel slide">
+                    
+                <div class="carousel-inner" >
+                    <div class="item " ng-repeat="newsArray in newsGroup" ng-class="{active:$index===0}">
+                        <div class="col-md-4 news-item" ng-repeat="news in newsArray">
+                            <h2 class="title"><a href="/html/news-single.html">{{news.title}}</a></h2>
+                            <img class="thumb" ng-src="/upload/news/{{news.image}}" alt=""  />
+                            <p>{{news.abstract}}</p>
+                            <a class="read-more" ui-sref="app.management.detail({id:news.id})">阅读更多<i class="fa fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!--//carousel-inner-->
+            </div>
+            <!--//news-carousel-->
+        </div>
+        <!--//section-content-->
+    </section>
+    <!--//news-->
+    <div class="row cols-wrapper">
+        <div class="col-md-3">
+            <section class="events">
+                <h1 class="section-heading text-highlight"><span class="line">通知</span></h1>
+                <div class="section-content">
+                    <div class="event-item" dir-paginate="event in events | orderBy:'-created_at' | itemsPerPage:4">
+                        <p class="date-label">
+                            <span class="month">{{event.begin | date:'M'}}月</span>
+                            <span class="date-number">{{event.begin | date:'dd'}}</span>
+                        </p>
+                        <div class="details">
+                            <h2 class="title">{{ event.title }}</h2>
+                            <p class="time"><i class="fa fa-clock-o"></i>{{event.begin | date:'hh:mm a'}} </p>
+                            <p class="location"><i class="fa fa-map-marker"></i>{{event.location}}</p></div>
+                        <!--//details-->
+                    </div>
+
+
+                    <!--event-item-->
+                    <a ng-show="events.length>4" class="read-more" ui-sref="app.management.event.list">所有通知<i class="fa fa-chevron-right"></i></a>
+                </div>
+                <!--//section-content-->
+            </section>
+            <!--//events-->
+        </div>
+        <!--//col-md-3-->
+        <div class="col-md-6">
+            <section class="course-finder">
+                <h1 class="section-heading text-highlight"><span class="line">搜索课程</span></h1>
+                <div class="section-content">
+                    <form id="courseSearchForm" class="course-finder-form" method="get" course-search-ready>
+                        <div class="row">
+                            <div class="col-md-5 col-sm-5 subject">
+                                <select id="courseSearch-device"
+                                        name="device"
+                                        class="form-control subject"
+                                        data-ng-model="courseSearchModel.deviceId"
+                                        data-ng-options="device.id as device.name for device in deviceList"
+                                />
+                            </div>
+                            <div class="col-md-7 col-sm-7 keywords">
+                                <input type="text" id="courseSearch-courseName" name="name" class="form-control pull-left" placeholder="请输入关键词" data-ng-model="courseSearchModel.courseName" />
+                                <button type="button" class="btn btn-theme" data-ng-click="search(courseSearchModel);"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                    <!--//course-finder-form-->
+                    <a class="read-more" data-ui-sref="course.search({sort:'hour_asc'})">浏览所有课程<i class="fa fa-chevron-right"></i></a>
+                </div>
+                <!--//section-content-->
+            </section>
+            <!--//course-finder-->
+            <section class="video">
+                <h1 class="section-heading text-highlight"><span class="line">最新课程</span></h1>
+                <div class="carousel-controls">
+                    <span class="prev" href="#videos-carousel" data-slide="prev"><i class="fa fa-caret-left" style="font-size: 22px;"></i></span>
+                    <span class="next" href="#videos-carousel" data-slide="next"><i class="fa fa-caret-right" style="font-size: 22px;"></i></span>
+                </div>
+                <!--//carousel-controls-->
+                <div class="section-content">
+                    <div id="videos-carousel" class="videos-carousel carousel slide">
+                        <div class="carousel-inner">
+                            <div class="item " ng-repeat="course in lastThreeMP4Course" ng-class="{active:0===$index}">
+                                <video class="video-iframe" ng-src="{{course.courseware}}" frameborder="0" allowfullscreen="" controls ></video>
+                                <p class="description">{{course.gist}}</p>
+                            </div>
+                            <!--//item-->
+                        </div>
+                        <!--//carousel-inner-->
+                    </div>
+                    <!--//videos-carousel-->
+                </div>
+                <!--//section-content-->
+            </section>
+            <!--//video-->
+        </div>
+        <div class="col-md-3">
+            <section class="links">
+                <h1 class="section-heading text-highlight"><span class="line">猜你喜欢</span></h1>
+                <div class="section-content">
+                    <p ng-repeat="favorite in favorites"><a ng-href="{{favorite.link}}" target="_blank"><i class="fa fa-caret-right"></i>{{favorite.title}}</a></p>
+                </div>
+                <!--//section-content-->
+            </section>
+            <!--//links-->
+            <section class="testimonials">
+                <h1 class="section-heading text-highlight"><span class="line">用户评语</span></h1>
+                <div class="carousel-controls">
+                    <span class="prev" href="#testimonials-carousel" data-slide="prev"><i class="fa fa-caret-left"></i></span>
+                    <span class="next" href="#testimonials-carousel" data-slide="next"><i class="fa fa-caret-right"></i></span>
+                </div>
+                <!--//carousel-controls-->
+                <div class="section-content">
+                    <div id="testimonials-carousel" class="testimonials-carousel carousel slide">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <blockquote class="quote">
+                                    <p><i class="fa fa-quote-left"></i>很高兴使用新源培训系统，好，不趕他出去，像某人那樣出氣力的反對，那人說，要是說一聲不肯，他倆已經忘卻了一切，我的意見，死鴨子的嘴吧，就發達繁昌起來。</p>
+                                </blockquote>
+                                <div class="row">
+                                    <p class="people col-md-8 col-sm-3 col-xs-8"><span class="name">韩梅梅</span>
+                                        <br /><span class="title">电力公司销售代表</span></p>
+                                    <img class="profile col-md-4 pull-right" src="assets/images/testimonials/profile-1.png" alt="" />
+                                </div>
+                            </div>
+                            <!--//item-->
+                            <div class="item">
+                                <blockquote class="quote">
+                                    <p><i class="fa fa-quote-left"></i> 新源培训系统非常专业，使用新源培训系统以后，我的小组成员业务技能提升明显。
+                                    </p>
+                                </blockquote>
+                                <div class="row">
+                                    <p class="people col-md-8 col-sm-3 col-xs-8"><span class="name">李雷</span>
+                                        <br /><span class="title"> 国电培训部经理</span></p>
+                                    <img class="profile col-md-4 pull-right" src="assets/images/testimonials/profile-2.png" alt="" />
+                                </div>
+                            </div>
+                            <!--//item-->
+                        </div>
+                        <!--//carousel-inner-->
+                    </div>
+                    <!--//testimonials-carousel-->
+                </div>
+                <!--//section-content-->
+            </section>
+            <!--//testimonials-->
+        </div>
+        <!--//col-md-3-->
+    </div>
+    <!--//cols-wrapper-->
+    <section class="awards">
+        <div id="awards-carousel" class="awards-carousel carousel slide">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <ul class="logos">
+                        <li class="col-md-2 col-sm-2 col-xs-4">
+                            <a href="#"><img class="img-responsive" src="assets/images/awards/award1.jpg" alt="" /></a>
+                        </li>
+                        <li class="col-md-2 col-sm-2 col-xs-4">
+                            <a href="#"><img class="img-responsive" src="assets/images/awards/award2.jpg" alt="" /></a>
+                        </li>
+                        <li class="col-md-2 col-sm-2 col-xs-4">
+                            <a href="#"><img class="img-responsive" src="assets/images/awards/award3.jpg" alt="" /></a>
+                        </li>
+                        <li class="col-md-2 col-sm-2 col-xs-4">
+                            <a href="#"><img class="img-responsive" src="assets/images/awards/award4.jpg" alt="" /></a>
+                        </li>
+                        <li class="col-md-2 col-sm-2 col-xs-4">
+                            <a href="#"><img class="img-responsive" src="assets/images/awards/award5.jpg" alt="" /></a>
+                        </li>
+                        <li class="col-md-2 col-sm-2 col-xs-4">
+                            <a href="#"><img class="img-responsive" src="assets/images/awards/award6.jpg" alt="" /></a>
+                        </li>
+                    </ul>
+                    <!--//slides-->
+                </div>
+                <!--//item-->
+                <div class="item">
+                    <ul class="logos">
+                        <li class="col-md-2 col-sm-2 col-xs-4">
+                            <img class="img-responsive" src="assets/images/awards/award7.jpg" alt="" />
+                        </li>
+                        <li class="col-md-2 col-sm-2 col-xs-4">
+                            <img class="img-responsive" src="assets/images/awards/award6.jpg" alt="" />
+                        </li>
+                        <li class="col-md-2 col-sm-2 col-xs-4">
+                            <img class="img-responsive" src="assets/images/awards/award5.jpg" alt="" />
+                        </li>
+                        <li class="col-md-2 col-sm-2 col-xs-4">
+                            <img class="img-responsive" src="assets/images/awards/award4.jpg" alt="" />
+                        </li>
+                        <li class="col-md-2 col-sm-2 col-xs-4">
+                            <img class="img-responsive" src="assets/images/awards/award3.jpg" alt="" />
+                        </li>
+                        <li class="col-md-2 col-sm-2 col-xs-4">
+                            <img class="img-responsive" src="assets/images/awards/award2.jpg" alt="" />
+                        </li>
+                    </ul>
+                    <!--//slides-->
+                </div>
+                <!--//item-->
+            </div>
+            <!--//carousel-inner-->
+            <a class="left carousel-control" href="#awards-carousel" data-slide="prev">
+                <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="right carousel-control" href="#awards-carousel" data-slide="next">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
+    </section>
+</div>
+<!--//content-->

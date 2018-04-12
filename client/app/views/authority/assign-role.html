@@ -1,0 +1,37 @@
+<div class="modal fade" id='assignRoleModal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">添加角色</h4>
+            </div>
+            <div class="modal-body">
+                <multiple-autocomplete ng-model="selectedList" object-property="name" suggestions-arr="optionList">
+                </multiple-autocomplete>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" ng-click='submitRole()'>确定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">角色分配</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">当前位置:</li>
+                    <li><a ui-sref='app.index'>首页</a><i class="fa fa-angle-right"></i></li>
+                    <li><a>权限管理</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">创建角色</li>
+                </ul>
+            </div>
+        </header>
+        <students-list students='accounts' show-role=true assign-role-fn='assignRole(account)'></students-list>
+    </div>
+</div>

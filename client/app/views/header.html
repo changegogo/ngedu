@@ -1,0 +1,174 @@
+<!-- ******HEADER****** -->
+<header class="header">
+    <div class="header-main container">
+        <h1 class="logo col-md-4 col-sm-4">
+            <a data-ui-sref="app.index"><img id="logo" src="assets/images/logo.png" alt="Logo" /></a>
+        </h1>
+        <!--//logo-->
+        <div class="info col-md-8 col-sm-8">
+            <ul class="menu-top navbar-right hidden-xs">
+                <li class="divider" ng-if='!profile.email'><a ui-sref='login'>注册／登录</a></li>
+                <li class="divider" ng-if='profile.email'><a ui-sref='login'>{{profile.email}}</a></li>
+                <li class="divider" ng-if='profile.email'><a ui-sref='resetPassword'>修改密码</a></li>
+                <li class="divider" ng-if='profile.email'><a href="" ng-click='logout()'>退出</a></li>
+                <!-- <li class="divider"><a data-ui-sref="app">首页</a></li> -->
+                <li ><a ui-sref="app.index.faq">常见问题</a></li>
+                <!-- <li><a href="/html/contact.html">联系方式</a></li> -->
+            </ul>
+            <!--//menu-top-->
+            <br />
+            <div class="contact pull-right">
+                <p class="phone"><i class="fa fa-phone"></i>拨打 95598</p>
+                <p class="email"><i class="fa fa-envelope"></i><a href="mailto:education@3etimes.com">education@3etimes.com</a></p>
+            </div>
+            <!--//contact-->
+        </div>
+        <!--//info-->
+    </div>
+    <!--//header-main-->
+</header>
+<!--//header-->
+<!-- ******NAV****** -->
+<nav class="main-nav" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--//nav-toggle-->
+        </div>
+        <!--//navbar-header-->
+        <div class="navbar-collapse collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="nav-item" ui-sref-active="active"><a ui-sref="app.index">首页</a></li>
+                <li class="nav-item dropdown" ui-sref-active="active">
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">设备培训 <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <!-- orderRole: "desc" -->
+                        <!-- orderName: "id" -->
+                        <li data-ng-repeat="device in deviceList"><a data-ui-sref="training.device({id:{{device.id}}})">{{device.name}}</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" ui-sref-active="active">
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">岗位培训 <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <!-- orderRole: "desc" -->
+                        <!-- orderName: "id" -->
+                        <li data-ng-repeat="post in postList"><a data-ui-sref="training.post({id:{{post.id}}})">{{post.name}}</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" ui-sref-active="active">
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">业务培训 <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <!-- orderRole: "desc" -->
+                        <!-- orderName: "id" -->
+                        <li data-ng-repeat="business in businessList"><a data-ui-sref="training.business({id:{{business.id}}})">{{business.name}}</a></li>
+                    </ul>
+                </li>
+                <li ng-show='profile.email' class="nav-item" ui-sref-active="active">
+                    <form id="loginNgeduClub" action="http://localhost:7001/signin" method="post" accept-charset="utf-8">
+                        <input type="text" ng-show=false name="name" ng-model="clubName">
+                        <input type="text" ng-show=false name="pass" ng-model="clubPassword">
+                        <a href="javascript:{void}" ng-mouseover="updateClubAccount()" onclick="document.getElementById('loginNgeduClub').submit();" >学习社区</a>
+                    </form>
+                </li>
+                <li ng-show='!profile.email' class="nav-item" >
+                        <a ui-sref='login'>学习社区</a>
+                </li>
+                <li ui-sref-active="active" class="nav-item" >
+                    <a ui-sref="examination({type:'my'})">我的考试</a>
+                </li>
+                <li class="nav-item" ui-sref-active="active"><a ui-sref="app.account.profile" ng-show="profile.email">个人中心 </a></li>
+                <li class="nav-item dropdown" ui-sref-active="active" ng-show='authority.courseManage'>
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">课程管理 <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a data-ui-sref="course">课程列表</a></li>
+                        <li><a data-ui-sref="device">设备管理</a></li>
+                        <li><a data-ui-sref="post">岗位管理</a></li>
+                        <li><a data-ui-sref="representation">文件格式管理</a></li>
+                        <li><a data-ui-sref="business">业务管理</a></li>
+<!--                         <li class="dropdown-submenu">
+                            <a>章节管理 <i class="fa fa-angle-right"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a data-ui-sref="chapter">章</a></li>
+                                <li><a data-ui-sref="section">节</a></li>
+                            </ul>
+                        </li>
+ -->                    
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" ui-sref-active="active" ng-show='authority.studentManage'>
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">学员管理 <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a ui-sref='students.all'>全部学员</a>
+                        </li>
+                        <li>
+                            <a ui-sref='students.classes'>培训班</a>
+                        </li>
+                        <li>
+                            <a ui-sref='students' ng-show='false'></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" ui-sref-active="active"  ng-show='authority.AuthoriyManage'>
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">权限管理 <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a ui-sref='app.authorities.assignRole'>角色分配</a>
+                        </li>
+                        <li>
+                            <a ui-sref='app.authorities.editRole'>创建角色</a>
+                        </li>
+                    </ul>
+                </li>
+                    <li class="nav-item dropdown" ui-sref-active="active" ng-show='authority.ExamManage'>
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">考试管理 <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a ui-sref='question-bank'>题库管理</a>
+                        </li>
+                        <li>
+                            <a ui-sref="examination({type:'all'})">考试管理</a>
+                        </li>
+                       <!--  <li>
+                            <a ui-sref="examination({type:'my'})">我的考试</a>
+                        </li> -->
+                    </ul>
+                </li>
+<!--                 <li class="nav-item dropdown" ui-sref-active="active" ng-show='authority.SystemManage'>
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">系统维护<i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a ui-sref='app.system.backup'>数据库备份</a>
+                        </li>
+                        <li>
+                            <a ui-sref='app.system.restore'>数据库恢复</a>
+                        </li>
+                        <li>
+                            <a ui-sref='app.system.logging'>日志查看</a>
+                        </li>
+                    </ul>
+                </li> -->
+                <li class="nav-item dropdown" ui-sref-active="active" ng-show='authority.WebsiteManage'>
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">网站维护<i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="app.management.carousel">轮播图编辑</a></li>
+                        <li><a ui-sref="app.management.news">新闻编辑</a></li>
+                        <li><a ui-sref="app.management.event">通知编辑</a></li>
+                        <li><a ui-sref="app.management.favorite">猜你喜欢编辑</a></li>
+                        <li><a ui-sref="app.management.faq">常见问题编辑</a></li>
+                        <li><a ui-sref="app.management.notification">系统消息编辑</a></li>
+                    </ul>
+                </li>
+                <!--//nav-->
+            </ul>
+        </div>
+        <!--//navabr-collapse-->
+    </div>
+    <!--//container-->
+</nav>
+<!--//main-nav-->

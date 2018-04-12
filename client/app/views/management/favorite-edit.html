@@ -1,0 +1,49 @@
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">猜你喜欢编辑</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">您的位置:</li>
+                    <li><a ui-sref="app.index">首页</a><i class="fa fa-angle-right"></i></li>
+                    <li><a>网站维护</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">猜你喜欢编辑</li>
+                </ul>
+            </div>
+            <!--//breadcrumbs-->
+        </header>
+        <div class="page-content">
+            <div class="row page-row">
+                <table class="table favorite-list">
+                    <thead>
+                        <tr>
+                            <th class="col-sm-1">序号</th>
+                            <th class="col-sm-1">标题</th>
+                            <th class="col-sm-8">链接</th>
+                            <th class="col-sm-1">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="favorite in favoriteList | orderBy:'created_at'">
+                            <td>{{$index+1}}</td>
+                            <td>
+                                <input type="text" ng-model='favorite.title'>
+                            </td>
+                            <td><input class="col-sm-12" type="text" ng-model='favorite.link'></td>
+                            <td>
+                                <button type="button" class="btn btn-primary" ng-click="updateFavorite(favorite)">更新</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+            </div>
+            <!--//page-row-->
+        </div>
+        <!--//page-content-->
+    </div>
+    <!--//page-->
+</div>
+<!--//content-->

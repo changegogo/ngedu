@@ -1,0 +1,58 @@
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th ng-if='selectable' class="col-sm-1">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model='selectAll' ng-change='selectAllCourses()'> 全选
+                        </label>
+                    </div>
+                </th>
+                
+<!--                 
+                <th class="col-sm-3">章</th>
+                <th class="col-sm-3">节</th>
+ -->                
+                <th class="col-sm-2">课程名称</th>
+                <th class="col-sm-1">设备分类</th>
+                <th class="col-sm-1">岗位</th>
+                <th class="col-sm-1">业务</th>
+                <th class="col-sm-1">课时</th>
+                <th class="col-sm-2" ng-if='showFinishTime'>完成时间</th>
+                <th class="col-sm-1" ng-if='showFinish'>完成</th>
+                <th class="col-sm-1" ng-if='deletable'>编辑</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr pagination-id='paginationId' dir-paginate="course in courses | filter:searchObject | filter:searchText | itemsPerPage: coursesPerPage"  current-page='pagination.current'>
+                <td ng-if='selectable'>
+                    <label>
+                        <input type="checkbox" ng-model='course.isSelected'> 添加 
+                    </label>
+                </td>
+
+<!--                 
+                <td>第{{course.chapterIndex}}章 {{course.chapter}}</td>
+                <td>第{{course.sectionIndex}}节 {{course.section}}</td>
+ -->                
+                <td><a ui-sref='training.detail({id:course.id})'>{{course.name}}</a></td>
+                <td>{{course.category}}</td>
+                <td>{{course.post}}</td>
+                <td>{{course.business.toString()}}</td>
+                <td>{{course.duration}}</td>
+                <td ng-if='showFinishTime'>{{course.endTime| date: 'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td ng-if='showFinish'>{{course.finished?"已完成":"未完成"}}</td>
+                <td ng-if='deletable'><button class="btn btn-primary" ng-click='deleteCourse(course)'>删除</button></td>
+
+            </tr>
+            <tr ng-if='courses == undefined || courses.length ==0'>
+                <td colspan="42" style="text-align:center"> 暂无数据</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div style="text-align: center">
+    <dir-pagination-controls pagination-id='paginationId' on-page-change='coursesPageChanged(newPageNumber)'></dir-pagination-controls>
+</div>
+

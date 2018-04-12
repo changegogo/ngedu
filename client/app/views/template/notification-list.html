@@ -1,0 +1,28 @@
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>已读</th>
+                <th>标题</th>
+                <!-- <th>内容</th> -->
+                <th>类型</th>
+                <th>创建日期</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr pagination-id='pagination-for-notification' dir-paginate="notification in notifications  | orderBy:'-createdAt' | itemsPerPage:5">
+                <td>
+
+                    <i class="fa fa-check" ng-show='notification.viewed'></i>
+                </td>
+                <td><a ui-sref='app.account.profile.notification({notification:notification, id:notification.id})'>{{notification.title}}</a></td>
+                <!-- <td>{{notification.description}}</td> -->
+                <td>{{notification.type}}</td>
+                <td>{{notification.createdAt | date : 'yyyy-MM-dd'}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="text-align: center">
+        <dir-pagination-controls pagination-id='pagination-for-notification' ></dir-pagination-controls>
+    </div>
+</div>

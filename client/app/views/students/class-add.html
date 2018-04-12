@@ -1,0 +1,50 @@
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">培训班学习情况</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">当前位置:</li>
+                    <li><a ui-sref='app.index'>首页</a><i class="fa fa-angle-right"></i></li>
+                    <li><a>学员管理</a><i class="fa fa-angle-right"></i></li>
+                    <li><a ui-sref='students.classes'>培训班</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">添加</li>
+                </ul>
+            </div>
+        </header>
+        <form class="form-inline" name='classForm'>
+            <h3>基本信息</h3>
+            <div class="form-group">
+                <label for="name">培训班名称：</label>
+                <input type="text" class="form-control" ng-model='className' required>
+            </div>
+            <h3>全部学员</h3>
+            <students-list students="students " search-object='studentsFilter' enroll-from-date='enrollFromDate' show-filter=true enroll-to-date='enrollToDate' selectable=true pagination-id='selectStudents'></students-list>
+            <h3>已选中学员</h3>
+            <students-list students="students " search-object='selectedFilter' deletable=true pagination-id='selectedStudents'></students-list>
+            <h3>全部课程</h3>
+            <label for="jobs"> 岗位：
+                <select id='jobs' ng-model='filterPost' ng-options='post for post in posts'>
+                    <option value="">全部岗位</option>
+                </select>
+            </label>
+            <label for="devices"> 设备：
+                <select id='devices' ng-model='devicePost' ng-options='device for device in devices'>
+                    <option value="">全部设备</option>
+                </select>
+            </label>
+            <label for="business"> 业务：
+                <select ng-model='businessPost' ng-options='business for business in businesses'>
+                    <option value="">全部业务</option>
+                </select>
+            </label>
+            <label>搜索：
+                <input type="text" ng-model='searchText'>
+            </label>
+            <class-courses-list courses="courses" selectable=true search-object='coursesFilter' search-text='searchText' pagination-id='selectCourses'></class-courses-list>
+            <h3>已选中课程</h3>
+            <class-courses-list courses="courses" deletable=true search-object='selectedFilter'  pagination-id='selectedCourses'></class-courses-list>
+            <button class="btn btn-success" type="button" ng-click='createClass()' ng-disabled="classForm.$invalid">创建</button>
+        </form>
+    </div>
+</div>

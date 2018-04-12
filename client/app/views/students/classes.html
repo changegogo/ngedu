@@ -1,0 +1,64 @@
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">培训班学习情况</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">当前位置:</li>
+                    <li><a ui-sref='app.index'>首页</a><i class="fa fa-angle-right"></i></li>
+                    <li><a>学员管理</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">培训班</li>
+                </ul>
+            </div>
+        </header>
+        <div class="courses-wrapper">
+            <div class="course-list-header box clearfix">
+                <div class="pull-left">
+                    <a role="button" class="btn btn-default" data-ui-sref="students.classes.add">添加</a>
+                </div>
+<!--                 <div class="sort pull-right">
+                    <label class="control-label pull-left">排序: </label>
+                    <select class="sort-options form-control pull-left" style="width:auto">
+                        <option>开始日期</option>
+                        <option>结束日期</option>
+                    </select>
+                </div> -->
+                <!--//sort-->
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="col-sm-3">培训班名称</th>
+                        <th class="col-sm-1">人数</th>
+                        <th class="col-sm-1">达标数</th>
+                        <th class="col-sm-1">课件数</th>
+                        <th class="col-sm-2">开课日期</th>
+                        <th class="col-sm-2">结束日期</th>
+                        <th class="col-sm-2">编辑</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr dir-paginate="class in classes | orderBy:'-startDate' | itemsPerPage: 5" >
+                        <td><a ui-sref='students.classes.detail({id:class.id})'>{{class.name}}</a></td>
+                        <td>{{class.total}}人</td>
+                        <td>{{class.completed}}人</td>
+                        <td>{{class.courses}}</td>
+                        <td>{{class.startDate | date:'yyyy-MM-dd'}}</td>
+                        <td ng-if='class.finished'>{{class.endDate | date:'yyyy-MM-dd'}}</td>
+                        <td ng-if='!class.finished'>
+                            <button class="btn btn-primary" ng-click='finishClass(class)'>结束</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" ng-click='deleteClass(class)'>删除</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align: center">
+            <dir-pagination-controls ></dir-pagination-controls>
+        </div>
+    </div>
+</div>

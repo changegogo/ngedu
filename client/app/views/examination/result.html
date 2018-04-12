@@ -1,0 +1,60 @@
+
+<style type="text/css">
+  td,th {vertical-align:middle!important; text-align: center;}
+</style>
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+  <div class="page-wrapper">
+    <header class="page-heading clearfix">
+      <h1 class="heading-title pull-left">考试结果</h1>
+      <div class="breadcrumbs pull-right">
+        <ul class="breadcrumbs-list">
+          <li class="breadcrumbs-label">当前位置:</li>
+          <li><a data-ui-sref="app">首页</a><em class="fa fa-angle-right"></em></li>
+          <li class="current">考试结果</li>
+        </ul>
+      </div>
+      <!--//breadcrumbs-->
+    </header>
+
+    <div class="page-content">
+      <div class="row page-row">
+        <div class="courses-wrapper col-sm-12">
+
+
+          <table id="listTable" class="table table-hover">
+            <thead>
+              <tr>
+                <th>序号</th>
+                <th>参考学员</th>
+                <th>答题时间</th>
+                <th>分数</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr dir-paginate="student in examination.students | orderBy:'-examinationAccount.score' | itemsPerPage:5">
+                <td>{{$index+1}}</td>
+                <td>{{student.name}}</td>
+                <td ng-if="!student.examinationAccount.finished">-</td>
+                <td ng-if="student.examinationAccount.finished">{{student.examinationAccount.updated_at | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>{{student.examinationAccount.score}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <!--//course-list-header-->
+        <div style="text-align: center">
+            <dir-pagination-controls  on-page-change='pageChanged(newPageNumber)'></dir-pagination-controls>
+        </div>
+
+          
+        </div>
+        <!--//courses-wrapper-->
+      </div>
+      <!--//page-row-->
+    </div>
+    <!--//page-content-->
+  </div>
+  <!--//page-->
+</div>
+<!--//content-->

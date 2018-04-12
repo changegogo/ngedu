@@ -1,0 +1,209 @@
+
+<style type="text/css">
+.checkbox {padding-top:0px!important;}
+.checkbox-inline, .radio-inline {padding-top:4px!important;}
+ .checkbox-inline > input[type="checkbox"]
+,.radio-inline > input[type="radio"]{position:relative; top:2px;}
+.students {padding-top:10px;}
+.students .label {margin-right:5px; margin-bottom:5px; padding-right:.2em; font-weight:normal; color:#666; border:1px solid #ccc; background:transparent; display:inline-block;}
+.students .btn {margin-bottom:5px;}
+.questions {padding-left:17px; padding-top:15px;}
+.questions li {padding-left:15px; position:relative;}
+.questions li > .remove {position:absolute; left:0px;}
+</style>
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+	<div class="page-wrapper">
+		<header class="page-heading clearfix">
+			<h1 class="heading-title pull-left">考试管理</h1>
+			<div class="breadcrumbs pull-right">
+				<ul class="breadcrumbs-list">
+					<li class="breadcrumbs-label">当前位置:</li>
+					<li><a data-ui-sref="app">首页</a><em class="fa fa-angle-right"></em></li>
+					<li><a data-ui-sref="examination">考试管理</a><em class="fa fa-angle-right"></em></li>
+					<li class="current">添加</li>
+				</ul>
+			</div>
+			<!--//breadcrumbs-->
+		</header>
+		<div class="page-content">
+			<div class="row page-row">
+				<div class="courses-wrapper col-sm-12">
+					<form class="form-horizontal" name="examinationForm" novalidate>
+						<div class="form-group">
+							<label for="examinationName" class="col-sm-1 control-label">考试名称</label>
+							<div class="col-sm-8">
+								<input type="text" id="examinationName" name="examinationName" class="form-control" placeholder="选项内容" data-ng-model="examinationModel.name" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="description" class="col-sm-1 control-label">考试说明</label>
+							<div class="col-sm-8">
+								<textarea id="description" name="description" class="form-control" rows="4" placeholder="考试说明" required="required" data-ng-model="examinationModel.description" required=""></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="startDate" class="col-sm-1 control-label">开始时间</label>
+							<div class="col-sm-4">
+								<div class="input-group">
+									<input type="text" id="startDate" name="startDate" class="form-control" placeholder="开始时间" readonly="readonly" data-ng-model="examinationModel.startDate"  required/>
+									<span class="input-group-addon add-on" trigger-bootstrap-datetimepicker="#startDate"><em class="fa fa-th"></em></span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="endDate" class="col-sm-1 control-label">结束时间</label>
+							<div class="col-sm-4">
+								<div class="input-group">
+									<input type="text" id="endDate" name="endDate" class="form-control" placeholder="结束时间" readonly="readonly" data-ng-model="examinationModel.endDate" required/>
+									<span class="input-group-addon add-on" trigger-bootstrap-datetimepicker="#endDate"><em class="fa fa-th"></em></span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label">选择学员</label>
+							<div class="col-sm-8">
+				        <students-list name='studentsList' students="students" show-filter=true selectable=true pagination-id='chooseStudents' ng-model="students" students-valid></students-list>
+								<!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#queryStudentModal">选择学员</button> -->
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label">已选中学员</label>
+							<div class="col-sm-8">
+				        <students-list students="students " search-object='selectedFilter' pagination-id='selectedStudents'></students-list>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label">选择考题</label>
+							<div class="col-sm-8">
+								<question-list name='question-list' questions="questions"  selectable=true pagination-id="choosingQuestions"/>
+								<!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#queryQuestionBankModal">选择考题</button> -->
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label">已选中考题</label>
+							<div class="col-sm-8">
+								<question-list questions="questions" search-object="selectedFilter" pagination-id="selectedQuestions"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-1 col-sm-8">
+								<button type="submit" class="btn btn-primary" data-ng-disabled="examinationForm.$invalid" data-ng-click="doSave();">保存</button>
+								<a role="button" class="btn btn-default" data-ui-sref="question-bank">返回</a>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!--//question-bank-wrapper-->
+			</div>
+			<!--//page-row-->
+		</div>
+		<!--//page-content-->
+	</div>
+	<!--//page-->
+</div>
+<!--//content-->
+
+<!-- 学员查询弹框 -->
+<div id="queryStudentModal" class="modal fade" role="dialog" aria-labelledby="studentModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<!-- header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+				<h4 id="studentModalLabel" class="modal-title">选择学员</h4>
+			</div>
+			<!-- body -->
+			<div class="modal-body">
+
+        <!-- <students-list students="students" show-filter=true selectable=true pagination-id='chooseStudents'></students-list> -->
+			</div>
+			<!-- footer -->
+			<div class="modal-footer">
+				<!-- <button type="button" class="btn btn-primary">确定</button> -->
+				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 考题查询弹框 -->
+<div id="queryQuestionBankModal" class="modal fade" role="dialog" aria-labelledby="questionBankModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<!-- header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+				<h4 id="questionBankModalLabel" class="modal-title">选择考试</h4>
+			</div>
+			<!-- body -->
+			<div class="modal-body">
+				<form class="form-inline">
+					<div class="form-group form-group-sm">
+						<input type="text" id="questionBankName" class="form-control" data-ng-model="questionBankModel.name" placeholder="考题内容" />
+					</div>
+					<button type="button" class="btn btn-primary btn-sm">查询</button>
+					<p></p>
+					<div class="form-group form-group-sm">
+						<select id="questionBankType" class="form-control" data-ng-model="questionBankModel.type">
+							<option value="">请选择题目类型</option>
+							<option value="TrueOrFalseQuestion">判断题</option>
+							<option value="ChoiceQuestion">选择题</option>
+						</select>
+					</div>
+					<div class="form-group form-group-sm">
+						<select id="chapter"
+								name="chapter"
+								class="form-control"
+								data-ng-model="questionBankModel.chapterId"
+								data-ng-options="chapter.id as chapter.name for chapter in chapterList"
+						/>
+					</div>
+					<div class="form-group form-group-sm">
+						<select id="section"
+								name="section"
+								class="form-control"
+								data-ng-model="questionBankModel.sectionId"
+								data-ng-options="section.id as section.name for section in sectionList"
+						/>
+					</div>
+					<p></p>
+					<div class="form-group form-group-sm">
+						<select id="device"
+								name="device"
+								class="form-control"
+								data-ng-model="questionBankModel.deviceId"
+								data-ng-options="device.id as device.name for device in deviceList"
+						/>
+					</div>
+					<div class="form-group form-group-sm">
+						<select id="post"
+								name="post"
+								class="form-control"
+								data-ng-model="questionBankModel.postId"
+								data-ng-options="post.id as post.name for post in postList"
+						/>
+					</div>
+					<div class="form-group form-group-sm">
+						<select id="business"
+								name="business"
+								class="form-control"
+								data-ng-model="questionBankModel.businessId"
+								data-ng-options="business.id as business.name for business in businessList"
+						/>
+					</div>
+				</form>
+				<hr />
+
+				<question-list questions="questions"  selectable=true pagination-id="choosingQuestions"/>
+				
+			</div>
+			<!-- footer -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary">保存</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			</div>
+		</div>
+	</div>
+</div>

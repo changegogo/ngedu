@@ -1,0 +1,83 @@
+<!-- create/edit modal view -->
+<div id="faqModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{faq.id?'编辑':'新建'}}事件</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" name="faqForm" novalidate="">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">标题：</label>
+                        <div class="col-sm-8 ">
+                            <input type="text" class="form-control" ng-model="faq.title" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">内容：</label>
+                        <div class="col-sm-8 ">
+                            <textarea rows=5 class="form-control textarea-noresize" ng-model="faq.description" required="" ></textarea>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" ng-click="submitFaq()" ng-disabled="faqForm.$invalid">确定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- ******CONTENT****** -->
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">常见问题编辑 - <button type="button" class="btn btn-primary" ng-click="createFaq()" >新建</button></h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">您的位置:</li>
+                    <li><a ui-sref="app.index">首页</a><i class="fa fa-angle-right"></i></li>
+                    <li><a>网站维护</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">常见问题编辑</li>
+                </ul>
+            </div>
+            <!--//breadcrumbs-->
+        </header>
+        <div class="page-content">
+            <div class="row page-row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>标题</th>
+                            <th>内容</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr dir-paginate="faq in faqList | orderBy:'-created_at' | itemsPerPage:5">
+                            <td>{{faq.title}}</td>
+                            <td>{{faq.description}}</td>
+                            <td>{{faq.created_at | date:'yyyy-MM-dd'}}</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" ng-click="editFaq(faq)">编辑</button>
+                                <button type="button" class="btn btn-warning" ng-click="deleteFaq(faq)">删除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <dir-pagination-controls/>
+                <hr>
+            </div>
+            <!--//page-row-->
+        </div>
+        <!--//page-content-->
+    </div>
+    <!--//page-->
+</div>
+<!--//content-->

@@ -1,0 +1,56 @@
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">轮播图编辑</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">当前位置:</li>
+                    <li><a ui-sref='app.index'>首页</a><i class="fa fa-angle-right"></i></li>
+                    <li><a>网站维护</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">轮播图编辑</li>
+                </ul>
+            </div>
+        </header>
+        <div class="courses-wrapper">
+            <h3>轮播图编辑 <small>建议：图片1140*350像素,标题不超过15字，副标题不超过25个字</small></h3>
+            <div class="index-edit row" ng-repeat="carousel in carousels | orderBy : '-id'">
+                <div class="col-sm-3">
+                    <img class="img-thumbnail " ng-src='/upload/carousel/{{carousel.image}}' alt="">
+                </div>
+                <div class="col-sm-7">
+                    <h5>标题：{{carousel.title}}</h5>
+                    <h5><small>副标题：{{carousel.subtitle}}</small></h5>
+                </div>
+                <div class="col-sm-2">
+                    <div>
+<!--                         <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-menu-up"></span></button>
+                        <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-menu-down"></span></button>
+ -->                        
+                       <button type="button" class="btn btn-primary" ng-click="deleteCarousel(carousel)">删除</button>
+                    </div>
+                </div>
+            </div>
+            <div class="index-edit row">
+                <form novalidate name="carouselForm">
+                    <div class="col-sm-3">
+                        <img class="img-thumbnail" ngf-thumbnail="carousel.imagePath || '/assets/images/upload_image.png'"  ngf-select="upload($file)" accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+                    </div>
+                    <div class="col-sm-7">
+                        <h5>标题： <input type="text" ng-model="carousel.title" placeholder="请输入标题" required></h5>
+                        <h5><small>副标题： <input type="text" ng-model="carousel.subtitle"  placeholder="请输入副标题" required></small></h5>
+                    </div>
+                    <div class="col-sm-2">
+                        <div style="">
+                            <button type="button" class="btn btn-success" ngf-select="upload($file)" accept="image/*"  ngf-max-size="10MB">上传图片 <span ng-show='progressPercentage > 0 && false'>{{progressPercentage + '%'}}</span></button>
+                            <button type="button" class="btn btn-primary" ng-disabled="carouselForm.$invalid || !carousel.imagePath" ng-click="submit()"><span>提交</span></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+
+
+
+    </div>
+</div>

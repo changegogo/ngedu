@@ -1,0 +1,98 @@
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">学员信息</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">当前位置:</li>
+                    <li><a ui-sref='app.index'>首页</a><i class="fa fa-angle-right"></i></li>
+                    <li><a ui-sref='app.account.profile'>个人中心</a><i class="fa fa-angle-right"></i></li>
+                    <!-- <li><a ui-sref='students.all'>全部学员</a><i class="fa fa-angle-right"></i></li> -->
+                    <li class="current">编辑</li>
+                </ul>
+            </div>
+        </header>
+    </div>
+    <h3>基本信息</h3>
+    <div class="page-content">
+        <form>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="name">用户名</label>
+                        <input type="text" class='form-control' id='name' ng-model='account.name' disabled>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="name">Email</label>
+                        <input type="text" class='form-control' id='name' ng-model='account.email'>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="realName">真实姓名</label>
+                        <input type="text" class='form-control' id='realName' ng-model='account.realName'>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="company">单位</label>
+                        <input type="text" class='form-control' id='company' ng-model='account.company'>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="department">部门</label>
+                        <input type="text" class='form-control' id='department' ng-model='account.department'>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="business">岗位</label>
+                        <input type="text" class="form-control" ng-model='account.post'>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="enrollTime">入职时间</label>
+                        <input type="date" class='form-control' id='enrollTime' ng-model='account.enrollTime'>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button type="button" class="btn btn-theme" ng-click='updateProfile()'>更新</button>
+            </div>
+        </form>
+    </div>
+    <!-- <h3>重置密码</h3> -->
+    <!-- <div class='page-content'>
+        <form>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="oldpassword">原密码</label>
+                        <input type="password" class="form-control" id="oldpassword" placeholder="原密码" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="newpassword">新密码</label>
+                        <input type="password" class="form-control" id="newpassword" placeholder="新密码" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="confirmpassword">确认密码</label>
+                        <input type="password" class="form-control" id="confirmpassword" placeholder="确认密码" />
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-theme">重置密码</button>
+                </div>
+            </div>
+        </form>
+    </div> -->
+</div>

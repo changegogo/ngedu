@@ -1,0 +1,48 @@
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">数据库备份</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">当前位置:</li>
+                    <li><a ui-sref='app.index'>首页</a><i class="fa fa-angle-right"></i></li>
+                    <li><a>系统维护</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">数据库备份</li>
+                </ul>
+            </div>
+        </header>
+        <div class="courses-wrapper col-sm-12">
+            <div class="course-list-header box clearfix">
+                <div class="pull-left">
+                    <a role="button" class="btn btn-default" ng-click='createBackup()'>添加</a>
+                </div>
+                <div class="sort pull-right">
+                    <label class="control-label pull-left">排序: </label>
+                    <select class="sort-options form-control pull-left">
+                        <option>创建日期</option>
+                    </select>
+                </div>
+                <!--//sort-->
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="col-sm-8">文件名</th>
+                            <th>创建时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr dir-paginate="backup in backups | itemsPerPage: 5 | orderBy : '-createdAt'">
+                            <td>{{backup.name}}</td>
+                            <td>{{backup.createdAt | date :'yyyy-MM-dd HH:mm:ss'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="text-align: center">
+                <dir-pagination-controls on-page-change='coursesPageChanged(newPageNumber)'></dir-pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

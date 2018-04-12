@@ -1,0 +1,37 @@
+
+
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">系统消息创建</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">当前位置:</li>
+                    <li><a >网站维护</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">系统消息创建</li>
+                </ul>
+            </div>
+            <!--//breadcrumbs-->
+        </header>
+        <form class="form-horizontal" name='notificationForm'>
+            <h3>系统消息</h3>
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">标题：</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" ng-model='title' required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">内容：</label>
+                <div class="col-sm-8">
+                    <textarea rows="5" class="form-control textarea-noresize" ng-model="description" required></textarea>
+                </div>
+            </div>
+            <h3>全部学员</h3>
+            <students-list students="students " search-object='studentsFilter' enroll-from-date='enrollFromDate' show-filter=true enroll-to-date='enrollToDate' selectable=true pagination-id='selectStudents'></students-list>
+            <h3>已选中学员</h3>
+            <students-list students="students " search-object='selectedFilter' deletable=true pagination-id='selectedStudents'></students-list>
+            <button class="btn btn-success" type="button" ng-click='createNotification()' ng-disabled="notificationForm.$invalid">创建</button>
+        </form>
+    </div>
+</div>

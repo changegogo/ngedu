@@ -1,0 +1,87 @@
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">学员信息</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">当前位置:</li>
+                    <li><a ui-sref='app.index'>首页</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">个人中心</li>
+                </ul>
+            </div>
+        </header>
+    </div>
+    <h3>基本信息 - <button type="button" class="btn btn-primary" ui-sref='app.account.profile.edit'> 编辑 </button></h3>
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label for="name">
+                    姓名
+                </label>
+                <input id='name' class="form-control" ng-model='account.name' disabled="">
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label for="company">
+                    单位
+                </label>
+                <input id='company' class="form-control" ng-model='account.company' disabled="">
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label for="department">
+                    部门
+                </label>
+                <input id='department' class="form-control" ng-model='account.department' disabled="">
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label for="job">
+                    岗位
+                </label>
+                <input id='job' class="form-control" ng-model='account.post' disabled="">
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label for="enrollTime">
+                    入职时间
+                </label>
+                <input id='enrollTime' class="form-control" ng-model='account.enrollTime' value="{{account.enrollTime|date:'yyyy-MM-dd'}}" disabled="">
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label for="finished">
+                   已完成课程数 
+                </label>
+                <input id='finished' class="form-control" ng-model='account.finished' disabled="">
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label for="class">
+                   当前培训班 
+                </label>
+                <input id='class' class="form-control" ng-model='account.class' disabled="">
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label for="class">
+                    学分
+                </label>
+                <input id='class' class="form-control" ng-model='account.courseCredit' disabled="">
+            </div>
+        </div>
+    </div>
+    <h3>学习中课程</h3>
+
+    <class-courses-list courses='courses' show-finish=true> </class-courses-list>
+    <h3>通知</h3>
+    <notification-list notifications='account.notifications'></notification-list>
+    
+</div>

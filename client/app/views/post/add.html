@@ -1,0 +1,56 @@
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+	<div class="page-wrapper">
+		<header class="page-heading clearfix">
+			<h1 class="heading-title pull-left">岗位管理</h1>
+			<div class="breadcrumbs pull-right">
+				<ul class="breadcrumbs-list">
+					<li class="breadcrumbs-label">当前位置:</li>
+					<li><a data-ui-sref="app">首页</a><em class="fa fa-angle-right"></em></li>
+					<li><a data-ui-sref="post">岗位管理</a><em class="fa fa-angle-right"></em></li>
+					<li class="current">添加</li>
+				</ul>
+			</div>
+			<!--//breadcrumbs-->
+		</header>
+		<div class="page-content">
+			<div class="row page-row">
+				<div class="courses-wrapper col-sm-12">
+
+					<form name="postForm" class="form-horizontal" novalidate>
+						<div class="form-group">
+							<label for="sortNumber" class="col-sm-1 control-label">排序</label>
+							<div class="col-sm-8">
+								<input type="number" id="sortNumber" name="sortNumber" class="form-control" max="99999" min="0" required="required" data-ng-model="postModel.sort" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="postName" class="col-sm-1 control-label">岗位名称</label>
+							<div class="col-sm-8">
+								<input type="text" id="postName" name="postName" class="form-control" placeholder="请输入岗位名称" data-ng-model="postModel.name" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="remark" class="col-sm-1 control-label">备注</label>
+							<div class="col-sm-8">
+								<textarea id="remark" name="remark" class="form-control" rows="4" data-ng-model="postModel.remark"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-1 col-sm-8">
+								<button type="submit" class="btn btn-primary" data-ng-disabled="postForm.$invalid" data-ng-click="doSave(postModel);">保存</button>
+								<a role="button" class="btn btn-default" data-ui-sref="post">返回</a>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!--//courses-wrapper-->
+			</div>
+			<!--//page-row-->
+		</div>
+		<!--//page-content-->
+	</div>
+	<!--//page-->
+</div>
+<!--//content-->

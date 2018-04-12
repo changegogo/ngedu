@@ -1,0 +1,51 @@
+<!-- ******CONTENT****** -->
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">常见问题</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">当前位置:</li>
+                    <li><a ui-sref="app.index">首页</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">常见问题</li>
+                </ul>
+            </div>
+            <!--//breadcrumbs-->
+        </header>
+        <div class="page-content">
+            <div class="row page-row">
+                <div class="faq-wrapper col-md-12 ">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default" ng-repeat="faq in faqs | orderBy:'-created_at'">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" data-target="#collapse-{{$index+1}}">
+                                           {{faq.title}} 
+                                            </a>
+                                        </h4>
+                            </div>
+                            <!--//pane-heading-->
+                            <div id="collapse-{{$index+1}}" class="panel-collapse collapse" ng-class="{in:$index===0}">
+                                <div class="panel-body">
+                                {{faq.description}}
+                                </div>
+                                <!--//panel-body-->
+                            </div>
+                            <!--//panel-colapse-->
+                        </div>
+                        
+                    </div>
+                    <!--//panel-group-->
+                </div>
+                <!--//faq-wrapper-->
+                
+            </div>
+            <!--//page-row-->
+        </div>
+        <!--//page-content-->
+    </div>
+    <!--//page-->
+</div>
+<!--//content-->
+</div>
+<!--//wrapper-->

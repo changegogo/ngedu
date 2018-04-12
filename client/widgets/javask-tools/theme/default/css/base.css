@@ -1,0 +1,115 @@
+@charset "utf-8";
+/* design by Javask */
+
+/* 总体样式定义 */
+#javask {padding:0px; margin:0px; text-align:left; color:#666; font-size:12px; font-family:"microsoft yahei","宋体",Tahoma,Verdana,Arial,Helvetica,sans-serif; background:#fff url(../img/empty.gif);}
+h1, h2, h3, h4, h5, h6, form, div, p, i, img, ul, li, ol, dl, dt, dd, table, tr, td, fieldset, label, legend,
+header, footer, nav, figure, figcaption, section, article {margin:0px; padding:0px;}
+a img, img, form {border:none;}
+a {color:#333; font-family:"microsoft yahei","宋体",Tahoma,Verdana,Arial,Helvetica,sans-serif; text-decoration:none;}
+a:hover {color:#f60; text-decoration:underline;}
+div, ul, li, fieldset,
+nav, header, footer, section, figure, figcaption {/*overflow:hidden;*/}
+ul, li {list-style:none;}
+input, textarea, select, button {margin:0px; padding:0px; font-family:"microsoft yahei","宋体",Tahoma,Verdana,Arial,Helvetica,sans-serif; color:#666;}
+input:focus {outline:none;}
+textarea:focus {outline:none;}
+select:focus {outline:none;}
+button:focus {outline:none;}
+
+/* clear */
+.clear, .clearleft {height:0px; font-size:0px; overflow:hidden;}
+.clear {clear:both;}
+.clear1 {clear:both;}
+.clearleft {clear:left;}
+
+/* 浮动 */
+.l {float:left;}
+.r {float:right;}
+
+/* 字体大小 [定义规则: 小写f加字体大小] */
+.f12 {font-size:12px;}
+.f14 {font-size:14px;}
+.f15 {font-size:15px;}
+.f16 {font-size:16px;}
+.f18 {font-size:18px;}
+.f20 {font-size:20px;}
+.f24 {font-size:24px;}
+.f25 {font-size:25px;}
+.f28 {font-size:28px;}
+
+/* 字体属性 [定义规则: 小写f加属性名称] */
+.fb {font-weight:bold;}
+.fn {font-weight:normal;}
+.fi {font-style:italic;}
+
+/* 内补丁 */
+.pad1 {padding:1px;}
+.pad2 {padding:2px;}
+.pad3 {padding:3px;}
+.pad4 {padding:4px;}
+.pad5 {padding:5px;}
+.pad6 {padding:6px;}
+.pad7 {padding:7px;}
+.pad8 {padding:8px;}
+.pad10 {padding:10px;}
+.padlef5 {padding-left:5px;}
+.padrig3 {padding-right:3px;}
+.padrig10 {padding-right:10px;}
+
+/* 外补丁 */
+.marc {margin:0px auto;}
+.mar0 {margin:0px;}
+.mar4 {margin:4px;}
+.mar5 {margin:5px;}
+.mar8 {margin:8px;}
+.mar10 {margin:10px;}
+.martop5 {margin-top:5px;}
+.martb5 {margin:5px 0px;}
+.marlr5 {margin:0px 5px;}
+.marlf5 {margin-left:5px;}
+.marrg5 {margin-right:5px;}
+.marlf10 {margin-left:10px;}
+.marlf18 {margin-left:18px;}
+.marlf20 {margin-left:20px;}
+
+/* 行高行间距 */
+.blank1, .blank2, .blank3, .blank4, .blank5, .blank6, .blank7, .blank8, .blank9, .blank10, .blank16 {font-size:1px; clear:both; overflow:hidden;}
+.blank1 {height:1px;}
+.blank2 {height:2px;}
+.blank3 {height:3px;}
+.blank4 {height:4px;}
+.blank5 {height:5px;}
+.blank6 {height:6px;}
+.blank7 {height:7px;}
+.blank8 {height:8px;}
+.blank9 {height:9px;}
+.blank10 {height:10px;}
+.blank16 {height:16px;}
+.lh18 {line-height:18px;}
+.lh20 {line-height:20px;}
+.lh23 {line-height:23px;}
+.lh26 {line-height:26px;}
+.lh28 {line-height:28px;}
+.lh32 {line-height:32px;}
+
+/* 常用边框 */
+.border {border:1px solid #ccc;}
+.border-none {border:none;}
+.border-bom {border-bottom:1px dashed #ccc;}
+.txtcen {text-align:center;}
+.txtleft {text-align:left;}
+.txtrig {text-align:right;}
+
+/* 常用颜色 */
+*.red {color:#f00;}
+*.green {color:#090;}
+*.blue {color:#00f;}
+*.orange {color:#f60;}
+*.white {color:#fff;}
+*.black {color:#000;}
+*.gray {color:#999;}
+
+/* display */
+*.hide {display:none;}
+*.show {display:block;}
